@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#263046"/>
+
+
+    <LinearLayout
+        android:id="@+id/linerMessage"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#781919"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/configuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="#781919"
+            android:hint="write configuration"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textColor="#dfd6cf"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:typeface="monospace"/>
+    </LinearLayout>
+
+
+</LinearLayout>

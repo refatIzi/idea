@@ -3,33 +3,41 @@ package com.example.idea;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.example.idea.helpinfo.Help;
 import com.example.idea.visualization.ActivityEditWatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
+import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
     EditText editText;
     TextView numberCode;
-
+    Help help;
+    FragmentTransaction fragmentHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        fragmentHelper = getSupportFragmentManager().beginTransaction();
+        help = new Help(this);
+        fragmentHelper.replace(R.id.liner, help);
+        fragmentHelper.commit();
         numberCode = findViewById(R.id.numberCode);
         editText = findViewById(R.id.txtCode);
-        editText.addTextChangedListener(new ActivityEditWatcher(this,"BASH"));
+        editText.addTextChangedListener(new ActivityEditWatcher(this, "BASH"));
         String text = "#!/bin/bash\n" +
                 "# while-menu: a menu driven system information program\n" +
                 "DELAY=1 # Number of seconds to display results\n" +
@@ -71,49 +79,29 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 "done\n" +
                 "echo \"Program terminated.\"";
         editText.setText(text);
+        /**следим за вводом текста
+         * Метод для подсказки */
 
-      //  writeData();
-    }
+        InputFilter filter = (source, start, end, dest, dstart, dend) -> {
+            help.clear();
+            String currentText = dest.toString().substring(0, dstart) + source.toString() + dest.toString().substring(dend);
 
+            // Перевірка всього тексту або останньої частини після пробілу
+            String[] parts = currentText.split("\\s+");
+            String searchText = parts[parts.length - 1]; // Останнє слово після пробілу
 
-    public static final String FEB_ONION_DIR = Environment.getExternalStorageDirectory().toString() + "/Documents/";
-/*
-    public static void writeData() {
-        try {
-            File filename = new File(FEB_ONION_DIR, "bash.json");
-            JSONObject object = new JSONObject();
-            JSONObject bash = new JSONObject();
-            JSONObject shell = new JSONObject();
-            JSONObject python = new JSONObject();
-            for (TextColor textColor : Bash.colors()) {
-                bash.put(textColor.pattern.toString(), textColor.color);
+            if (searchText.length() > 0) {
+                help.helpAdd(searchText);
             }
-            object.put("BASH", bash);
-
-            for (TextColor textColor : Shell.colors()) {
-                shell.put(textColor.pattern.toString(), textColor.color);
-            }
-            object.put("SHELL", shell);
-
-            for (TextColor textColor : Python.colors()) {
-                python.put(textColor.pattern.toString(), textColor.color);
-            }
-            object.put("Python", python);
-
-            new FileOutputStream(filename).write(object.toString().getBytes());
-        } catch (IOException ex) {
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            return null;
+        };
+        editText.setFilters(new InputFilter[]{filter});
 
     }
 
-
- */
-
-    /**
-     * Метод котрый выводит номурецию строки
-     */
+        /**
+         * Метод котрый выводит номурецию строки
+         */
 
     public void numberOfConstruction(int errLine) {
         int lineCount = editText.getLineCount();
@@ -147,5 +135,15 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             // Логування або обробка винятків може бути додана тут
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void Information(String help) {
+
+    }
+
+    @Override
+    public void setEdit(String s) {
+        editText.getText().insert(editText.getSelectionStart(), s);
     }
 }
