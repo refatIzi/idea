@@ -3,7 +3,6 @@ package com.example.idea;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.example.idea.permission.Permission;
 import com.example.idea.visualization.ActivityEditWatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new Permission(this);
+
 
         numberCode = findViewById(R.id.numberCode);
         editText = findViewById(R.id.txtCode);
