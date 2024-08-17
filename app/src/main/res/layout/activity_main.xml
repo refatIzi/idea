@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#191919"
+    tools:context=".MainActivity">
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/numberCode"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="#191919"
+                android:gravity="center_horizontal"
+                android:textColor="#0260e8"
+                android:textSize="13sp"
+                android:typeface="monospace" />
+
+            <HorizontalScrollView
+                android:id="@+id/scrol"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#191919"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/txtCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="#191919"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:scrollbars="vertical"
+                        android:scrollHorizontally="true"
+                        android:textColor="#dfd6cf"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:text="Hello"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:typeface="monospace" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/terminalMode"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:background="#dfd6cf"
+        android:gravity="center" />
+
+    <FrameLayout
+        android:id="@+id/liner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#191919"
+        android:gravity="center" />
+</RelativeLayout>

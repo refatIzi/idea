@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languages>
+    <language name="BASH">
+        <pattern color="-12673846">[\(\)\{\}\[\]]</pattern>
+        <pattern color="-1654661">\b([0-9]+)\b</pattern>
+        <pattern color="-11613776">\b(echo|cd|ls|cat|chmod|chown|mv|cp|rm|mkdir|rmdir|pwd|touch|grep|find|sed|awk|head|tail|wc|sort|cut|diff|tar|gzip|gunzip|zip|unzip|ping|curl|wget|ssh|scp|kill|ps|top|df|du|free|uname|date|whoami|man)\b</pattern>
+        <pattern color="-5866496">\b(\d+)\b</pattern>
+        <pattern color="-3377102">\b(\/[a-zA-Z0-9._\/-]+)\b</pattern>
+        <pattern color="-9791147">#.*</pattern>
+        <pattern color="-11100970">\b(if|then|else|elif|fi|for|while|do|done|case|esac|function|return|break|continue|exit|export|declare|local|readonly|trap|eval|exec|in|select|until|time|shift|getopts)\b</pattern>
+        <pattern color="-2302806">[+\-*\/%&amp;|^!~&lt;&gt;]=?|==|!=|&lt;=|&gt;=|&amp;&amp;|\|\|</pattern>
+        <pattern color="-5000958">\b\w+\b(?=\s*\()</pattern>
+        <pattern color="-2712187">\"(?:\\\\.|[^\\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'</pattern>
+        <pattern color="-3239560">\b\$(\w+|\{[^}]+\})\b</pattern>
+    </language>
+    <language name="SHELL">
+        <pattern color="-12673846">[\(\)\{\}\[\]]</pattern>
+        <pattern color="-1654661">\bclass\s+\w+</pattern>
+        <pattern color="-3377102">\b(Get-\w+|Set-\w+|New-\w+|Remove-\w+|Update-\w+|Invoke-\w+)\b</pattern>
+        <pattern color="-5866496">\b(int|long|float|double|string|bool|array|object)\b</pattern>
+        <pattern color="-11613776">\b(Write-Output|Write-Host|Read-Host|Get-Content|Set-Content|Remove-Item|New-Item|Get-Item|Set-Item|Invoke-Expression|Start-Process|Stop-Process|Get-Command|Import-Module|Export-Csv|ConvertTo-Json|ConvertFrom-Json)\b</pattern>
+        <pattern color="-9791147">#.*</pattern>
+        <pattern color="-11100970">\b(while|for|foreach|if|elseif|else|switch|case|default|function|return|throw|try|catch|finally|trap|do|continue|break|class|param|dynamicparam|begin|process|end|filter|module|using|namespace|const)\b</pattern>
+        <pattern color="-2302806">[+\-*\/%&amp;|^!~&lt;&gt;]=?|==|!=|&lt;=|&gt;=|&amp;&amp;|\|\|</pattern>
+        <pattern color="-5000958">\b\w+\b(?=\s*\()</pattern>
+        <pattern color="-2712187">\"(?:\\\\.|[^\\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'</pattern>
+        <pattern color="-3239560">\b\$(\w+)\b</pattern>
+    </language>
+    <language name="Python">
+        <pattern color="-3839369">\b(self|def|as|assert|break|continue|del|except|finally|from|global|import|in|pass|raise|return|try|with|yield)\b</pattern>
+        <pattern color="-12673846">\b(False|None|True|and|nonlocal|not|or|class|is|lambda)\b</pattern>
+        <pattern color="-13672557">\b\d+\b</pattern>
+        <pattern color="-13981264">\b(pass|Options|dict|slice|object|staticmethod|str|int|bool|super|tuple|bytearray|float|bytes|type|property|list|frozenset|classmethod|complex|set)\b</pattern>
+        <pattern color="-3377102">\b(min|setattr|abs|all|dir|hex|next|any|divmod|id|sorted|ascii|enumerate|input|oct|max|round|bin|eval|exec|isinstance|ord|sum|filter|issubclass|pow|iter|print|callable|format|delattr|len|chr|range|vars|getattr|locals|repr|zip|compile|globals|map|reversed|__import__|hasattr|hash|memoryview)\b</pattern>
+        <pattern color="-5000958">\b(capitalize|casefold|center|count|encode|endswith|expandtabs|find|index|isalnum|isalpha|isascii|isdigit|isidentifier|islower|isnumeric|isprintable|isspace|istitle|isupper|join|ljust|lower|lstrip|rstrip|maketrans|partition|replace|rfind|rindex|rjust|rpartition|rsplit|split|splitlines|startswith|strip|swapcase|title|translate|upper|zfill)\b</pattern>
+        <pattern color="-5000958">\b(append|extend|insert|remove|pop|clear|sort|reverse|copy)\b</pattern>
+        <pattern color="-5000958">\b(fromkeys|get|items|keys|popitem|setdefault|update|values)\b</pattern>
+        <pattern color="-10187592">\b([a-zA-Z])\b</pattern>
+        <pattern color="-5000958">\b(read|write|tell|seek|close|open|closed|mode|name|softspace)\b</pattern>
+        <pattern color="-8892498">\b(file_name|access_mode|buffering)\b</pattern>
+        <pattern color="-10323113">#.*</pattern>
+        <pattern color="-4949684">\"(?:\\\\.|[^\\"\\\\])*\"</pattern>
+        <pattern color="-5538304">##.*</pattern>
+        <pattern color="-12673846">[(){}\[\]]</pattern>
+        <pattern color="-5866496">\b(int|float|str|list|dict|set|tuple)\b</pattern>
+        <pattern color="-3051716">\b(try|except|finally|raise)\b</pattern>
+        <pattern color="-12673846">\b(while|for|if|elif|else)\b</pattern>
+        <pattern color="-3239560">\"\"\"[\s\S]*?\"\"\"|''''[\s\S]*?'</pattern>
+    </language>
+</languages>
+
