@@ -5,16 +5,20 @@ package com.example.idea.helpinfo;
  */
 public class HelpInfo {
     private String help;
+    private String type;
+
     private String information;
 
     /**
      * Конструктор класу HelpInfo.
      *
-     * @param help Підказка, яка буде зберігатися.
+     * @param help        Підказка, яка буде зберігатися.
+     * @param type
      * @param information Додаткова інформація, пов'язана з підказкою.
      */
-    public HelpInfo(String help, String information) {
+    public HelpInfo(String help, String type, String information) {
         this.help = help;
+        this.type = type;
         this.information = information;
     }
 
@@ -34,6 +38,24 @@ public class HelpInfo {
      */
     public void setHelp(String help) {
         this.help = help;
+    }
+
+    /**
+     * Повертає тип інформації, наприклад, Keyword або Command...
+     *
+     * @return тип інформації.
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Встановлює тип інформації, наприклад, Keyword або Command..
+     *
+     * @param type тип інформації для встановлення.
+     */
+    public void setType(String type) {
+        this.type = type;
     }
 
     /**

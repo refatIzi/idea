@@ -1,9 +1,8 @@
 package com.example.idea.helpinfo;
 
-import static com.example.idea.R.id.linerMessage;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.idea.MainInterface;
 import com.example.idea.R;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,7 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     };
 
     private ListView listView;
+    private List<HelpInfo> listWords;
     private List<HelpInfo> helper = new ArrayList<>();
     private HelpAdapter adapter;
     private MainInterface mainInterface;
@@ -52,24 +55,27 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
 
     /**
      * Конструктор фрагмента Help.
+     *
      * @param context Контекст головної активності.
      */
     @SuppressLint("ValidFragment")
     public Help(Context context) {
         this.mainInterface = (MainInterface) context;
         this.context = context;
+        this.listWords = parseInfoByLanguage(context, "BASH");
     }
 
     /**
      * Додає інформацію про допомогу на основі введеного тексту.
+     *
      * @param help Префікс для порівняння допоміжних функцій.
      */
     public void helpAdd(String help) {
         this.help = help;
         helper.clear();
-        for (String function : FUNCTIONS1) {
-            if (function.startsWith(help)) {
-                helper.add(new HelpInfo(function, "no info"));
+        for (HelpInfo info : listWords) {
+            if (info.getHelp().startsWith(help)) {
+                helper.add(new HelpInfo(info.getHelp(), info.getType(), info.getInformation()));
             }
         }
         adapter.notifyDataSetChanged();
@@ -99,6 +105,7 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
 
     /**
      * Ініціалізує види та налаштовує адаптер.
+     *
      * @param view Кореневий вигляд фрагмента.
      */
     private void initializeViews(View view) {
@@ -124,5 +131,43 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
         String selectedHelp = adapter.getItem(position).getHelp();
         mainInterface.setEdit(selectedHelp.replace(help, ""));
 
+    }
+
+
+    public List<HelpInfo> parseInfoByLanguage(Context context, String languageName) {
+
+        List<HelpInfo> listWords = new ArrayList<>();
+        try {
+            XmlResourceParser parser = context.getResources().getXml(R.xml.languages);
+            int eventType = parser.getEventType();
+            boolean isCorrectLanguage = false;
+
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                        if (parser.getName().equals("language")) {
+                            String name = parser.getAttributeValue(null, "name");
+                            isCorrectLanguage = name.equals(languageName);
+                        } else if (parser.getName().equals("info") && isCorrectLanguage) {
+                            String keyword = parser.getAttributeValue(null, "keyword");
+                            String type = parser.getAttributeValue(null, "type");
+                            String description = parser.getAttributeValue(null, "description");
+                            listWords.add(new HelpInfo(keyword, type, description));
+                        }
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        if (parser.getName().equals("language")) {
+                            isCorrectLanguage = false;
+                        }
+                        break;
+                }
+                eventType = parser.next();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listWords;
     }
 }

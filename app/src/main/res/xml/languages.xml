@@ -79,7 +79,7 @@
         <info keyword="set" type="Command" description="Встановлює або переглядає параметри оболонки. Може використовуватися для зміни параметрів виконання скриптів."/>
         <info keyword="unset" type="Command" description="Видаляє змінну або функцію. Наприклад, 'unset VARIABLE' видаляє змінну VARIABLE."/>
         <info keyword="while" type="Keyword" description="Створює цикл, який виконує команди, поки умова є істинною. Наприклад, 'while [ $x -lt 10 ]; do echo $x; x=$((x+1)); done' виконує цикл, поки x менше 10."/>
-        <info keyword="case" type="Keyword" description="Виконує блоки команд в залежності від значення змінної. Наприклад, 'case $var in 1) echo "one";; 2) echo "two";; esac' виконує команду в залежності від значення $var."/>
+        <info keyword="case" type="Keyword" description="Виконує блоки команд в залежності від значення змінної. Наприклад, 'case $var in 1) echo &quot;one&quot;; 2) echo &quot;two&quot;; esac' виконує команду в залежності від значення $var."/>
         <info keyword="grep" type="Command" description="Шукає рядки, що відповідають регулярному виразу в файлі або вхідних даних. Наприклад, 'grep 'pattern' file.txt' виведе рядки, що містять 'pattern'."/>
         <info keyword="awk" type="Command" description="Мова для обробки текстових файлів і даних. Наприклад, 'awk '{print $1}' file.txt' виведе перше поле кожного рядка в file.txt."/>
         <info keyword="sed" type="Command" description="Редактор потоку для обробки текстових даних. Наприклад, 'sed 's/old/new/g' file.txt' замінює всі 'old' на 'new' у file.txt."/>
