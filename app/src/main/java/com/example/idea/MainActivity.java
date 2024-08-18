@@ -25,19 +25,20 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     TextView numberCode;
     Help help;
     FragmentTransaction fragmentHelper;
+    String languageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        languageName="BASH";
         fragmentHelper = getSupportFragmentManager().beginTransaction();
-        help = new Help(this);
+        help = new Help(this,languageName);
         fragmentHelper.replace(R.id.liner, help);
         fragmentHelper.commit();
         numberCode = findViewById(R.id.numberCode);
         editText = findViewById(R.id.txtCode);
-        editText.addTextChangedListener(new ActivityEditWatcher(this, "BASH"));
+        editText.addTextChangedListener(new ActivityEditWatcher(this, languageName));
         String text = "#!/bin/bash\n" +
                 "# while-menu: a menu driven system information program\n" +
                 "DELAY=1 # Number of seconds to display results\n" +

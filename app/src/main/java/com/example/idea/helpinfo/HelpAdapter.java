@@ -45,6 +45,7 @@ public class HelpAdapter extends ArrayAdapter<HelpInfo> {
 
             viewHolder = new ViewHolder();
             viewHolder.helpTextView = convertView.findViewById(R.id.help);
+            viewHolder.typeTextView = convertView.findViewById(R.id.type);
             viewHolder.infoTextView = convertView.findViewById(R.id.info);
 
             convertView.setTag(viewHolder);
@@ -54,6 +55,7 @@ public class HelpAdapter extends ArrayAdapter<HelpInfo> {
 
         HelpInfo helpInfo = objects.get(position);
         viewHolder.helpTextView.setText(helpInfo.getHelp());
+        viewHolder.typeTextView.setText(helpInfo.getType());
         viewHolder.infoTextView.setText(helpInfo.getInformation());
 
         return convertView;
@@ -64,6 +66,7 @@ public class HelpAdapter extends ArrayAdapter<HelpInfo> {
      */
     private static class ViewHolder {
         TextView helpTextView;
+        TextView typeTextView;
         TextView infoTextView;
     }
 }

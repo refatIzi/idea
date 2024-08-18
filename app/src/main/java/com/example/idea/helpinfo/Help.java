@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,28 +29,12 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class Help extends Fragment implements AdapterView.OnItemClickListener {
 
-    private static final String[] FUNCTIONS1 = {
-            "self", "def", "as", "assert", "break", "continue", "del", "elif", "else",
-            "except", "finally", "for", "from", "global", "if", "import", "in", "pass",
-            "raise", "return", "try", "while", "with", "yield"
-    };
-
-    private static final String[] FUNCTIONS2 = {
-            "min()", "setattr()", "abs()", "all()", "dir()", "hex()", "next()", "any()",
-            "divmod()", "id()", "sorted()", "ascii()", "enumerate()", "input()", "oct()",
-            "max()", "round()", "bin()", "eval()", "exec()", "isinstance()", "ord()", "sum()",
-            "filter()", "issubclass()", "pow()", "iter()", "print()", "callable()", "format()",
-            "delattr()", "len()", "chr()", "range()", "vars()", "getattr()", "locals()", "repr()",
-            "zip()", "compile()", "globals()", "map()", "reversed()", "__import__()", "hasattr()",
-            "hash()", "memoryview()"
-    };
-
     private ListView listView;
     private List<HelpInfo> listWords;
-    private List<HelpInfo> helper = new ArrayList<>();
+    private final List<HelpInfo> helper = new ArrayList<>();
     private HelpAdapter adapter;
-    private MainInterface mainInterface;
-    private Context context;
+    private final MainInterface mainInterface;
+    private final Context context;
     private String help;
     private EditText configuration;
 
@@ -58,11 +43,10 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
      *
      * @param context Контекст головної активності.
      */
-    @SuppressLint("ValidFragment")
-    public Help(Context context) {
+    public Help(Context context, String languageName) {
         this.mainInterface = (MainInterface) context;
         this.context = context;
-        this.listWords = parseInfoByLanguage(context, "BASH");
+        this.listWords = parseInfoByLanguage(context, languageName);
     }
 
     /**
@@ -75,10 +59,10 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
         helper.clear();
         for (HelpInfo info : listWords) {
             if (info.getHelp().startsWith(help)) {
-                helper.add(new HelpInfo(info.getHelp(), info.getType(), info.getInformation()));
+                helper.add(info);
             }
         }
-        adapter.notifyDataSetChanged();
+        updateAdapter();
     }
 
     /**
@@ -86,6 +70,13 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
      */
     public void clear() {
         helper.clear();
+        updateAdapter();
+    }
+
+    /**
+     * Оновлює адаптер списку.
+     */
+    private void updateAdapter() {
         adapter.notifyDataSetChanged();
     }
 
@@ -121,7 +112,8 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     private void setupListView() {
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
-            mainInterface.Information(adapter.getItem(position).getHelp());
+           // mainInterface.Information(adapter.getItem(position).getHelp());
+            Toast.makeText(context,""+adapter.getItem(position).getInformation(),Toast.LENGTH_SHORT).show();
             return true;
         });
     }
@@ -130,12 +122,16 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String selectedHelp = adapter.getItem(position).getHelp();
         mainInterface.setEdit(selectedHelp.replace(help, ""));
-
     }
 
-
-    public List<HelpInfo> parseInfoByLanguage(Context context, String languageName) {
-
+    /**
+     * Парсить інформацію про ключові слова та їх типи для вказаної мови.
+     *
+     * @param context Контекст для отримання ресурсів.
+     * @param languageName Назва мови, для якої потрібно парсити дані.
+     * @return Список об'єктів HelpInfo з інформацією про ключові слова.
+     */
+    private List<HelpInfo> parseInfoByLanguage(Context context, String languageName) {
         List<HelpInfo> listWords = new ArrayList<>();
         try {
             XmlResourceParser parser = context.getResources().getXml(R.xml.languages);
@@ -145,10 +141,10 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
-                        if (parser.getName().equals("language")) {
+                        if ("language".equals(parser.getName())) {
                             String name = parser.getAttributeValue(null, "name");
                             isCorrectLanguage = name.equals(languageName);
-                        } else if (parser.getName().equals("info") && isCorrectLanguage) {
+                        } else if ("info".equals(parser.getName()) && isCorrectLanguage) {
                             String keyword = parser.getAttributeValue(null, "keyword");
                             String type = parser.getAttributeValue(null, "type");
                             String description = parser.getAttributeValue(null, "description");
@@ -157,7 +153,7 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if (parser.getName().equals("language")) {
+                        if ("language".equals(parser.getName())) {
                             isCorrectLanguage = false;
                         }
                         break;
