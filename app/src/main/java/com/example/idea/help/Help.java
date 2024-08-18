@@ -1,9 +1,9 @@
-package com.example.idea.helpinfo;
+package com.example.idea.help;
 
 /**
  * Клас HelpInfo представляє інформацію для підказок, що включає саму підказку та додаткову інформацію.
  */
-public class HelpInfo {
+public class Help {
     private String help;
     private String type;
 
@@ -16,7 +16,7 @@ public class HelpInfo {
      * @param type
      * @param information Додаткова інформація, пов'язана з підказкою.
      */
-    public HelpInfo(String help, String type, String information) {
+    public Help(String help, String type, String information) {
         this.help = help;
         this.type = type;
         this.information = information;

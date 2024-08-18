@@ -1,4 +1,4 @@
-package com.example.idea.helpinfo;
+package com.example.idea.help;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,8 +16,8 @@ import java.util.List;
 /**
  * Адаптер для відображення інформації про допомогу у ListView.
  */
-public class HelpAdapter extends ArrayAdapter<HelpInfo> {
-    private final List<HelpInfo> objects;
+public class HelpAdapter extends ArrayAdapter<Help> {
+    private final List<Help> objects;
     private final Context context;
     private final int resource;
 
@@ -28,7 +28,7 @@ public class HelpAdapter extends ArrayAdapter<HelpInfo> {
      * @param resource Ресурс розмітки для кожного елемента.
      * @param objects Список об'єктів HelpInfo для відображення.
      */
-    public HelpAdapter(@NonNull Context context, int resource, List<HelpInfo> objects) {
+    public HelpAdapter(@NonNull Context context, int resource, List<Help> objects) {
         super(context, resource, objects);
         this.objects = objects;
         this.context = context;
@@ -53,10 +53,10 @@ public class HelpAdapter extends ArrayAdapter<HelpInfo> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        HelpInfo helpInfo = objects.get(position);
-        viewHolder.helpTextView.setText(helpInfo.getHelp());
-        viewHolder.typeTextView.setText(helpInfo.getType());
-        viewHolder.infoTextView.setText(helpInfo.getInformation());
+        Help help = objects.get(position);
+        viewHolder.helpTextView.setText(help.getHelp());
+        viewHolder.typeTextView.setText(help.getType());
+        viewHolder.infoTextView.setText(help.getInformation());
 
         return convertView;
     }

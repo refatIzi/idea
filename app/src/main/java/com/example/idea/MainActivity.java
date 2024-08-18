@@ -3,27 +3,25 @@ package com.example.idea;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.example.idea.helpinfo.Help;
+import com.example.idea.help.Helper;
 import com.example.idea.visualization.ActivityEditWatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Environment;
 import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
     EditText editText;
     TextView numberCode;
-    Help help;
+    Helper helper;
     FragmentTransaction fragmentHelper;
     String languageName;
 
@@ -31,10 +29,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        languageName="BASH";
+        languageName="Python";
         fragmentHelper = getSupportFragmentManager().beginTransaction();
-        help = new Help(this,languageName);
-        fragmentHelper.replace(R.id.liner, help);
+        helper = new Helper(this,languageName);
+        fragmentHelper.replace(R.id.liner, helper);
         fragmentHelper.commit();
         numberCode = findViewById(R.id.numberCode);
         editText = findViewById(R.id.txtCode);
@@ -84,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
          * Метод для подсказки */
 
         InputFilter filter = (source, start, end, dest, dstart, dend) -> {
-            help.clear();
+            helper.clear();
             String currentText = dest.toString().substring(0, dstart) + source.toString() + dest.toString().substring(dend);
 
             // Перевірка всього тексту або останньої частини після пробілу
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             String searchText = parts[parts.length - 1]; // Останнє слово після пробілу
 
             if (searchText.length() > 0) {
-                help.helpAdd(searchText);
+                helper.helpAdd(searchText);
             }
             return null;
         };

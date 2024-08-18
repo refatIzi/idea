@@ -1,4 +1,4 @@
-package com.example.idea.helpinfo;
+package com.example.idea.help;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,13 +28,13 @@ import java.util.List;
  * Фрагмент для надання інформації допомоги на основі введеного тексту.
  */
 @SuppressLint("ValidFragment")
-public class Help extends Fragment implements AdapterView.OnItemClickListener {
+public class Helper extends Fragment implements AdapterView.OnItemClickListener {
 
     private ListView listView;
-    private List<HelpInfo> listWords;
+    private List<Help> listWords;
     private List<Example> examples;
 
-    private final List<HelpInfo> helper = new ArrayList<>();
+    private final List<Help> helper = new ArrayList<>();
     private HelpAdapter adapter;
     private final MainInterface mainInterface;
     private final Context context;
@@ -45,10 +45,10 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     /**
      * Конструктор фрагмента Help.
      *
-     * @param context Контекст головної активності.
+     * @param context      Контекст головної активності.
      * @param languageName Назва мови для парсингу даних.
      */
-    public Help(Context context, String languageName) {
+    public Helper(Context context, String languageName) {
         this.mainInterface = (MainInterface) context;
         this.context = context;
         this.languageName = languageName;
@@ -64,7 +64,7 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     public void helpAdd(String help) {
         this.help = help;
         helper.clear();
-        for (HelpInfo info : listWords) {
+        for (Help info : listWords) {
             if (info.getHelp().startsWith(help)) {
                 helper.add(info);
             }
@@ -141,12 +141,12 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     /**
      * Парсить інформацію про ключові слова та їх типи для вказаної мови.
      *
-     * @param context Контекст для отримання ресурсів.
+     * @param context      Контекст для отримання ресурсів.
      * @param languageName Назва мови, для якої потрібно парсити дані.
      * @return Список об'єктів HelpInfo з інформацією про ключові слова.
      */
-    private List<HelpInfo> parseInfoByLanguage(Context context, String languageName) {
-        List<HelpInfo> listWords = new ArrayList<>();
+    private List<Help> parseInfoByLanguage(Context context, String languageName) {
+        List<Help> listWords = new ArrayList<>();
         try (XmlResourceParser parser = context.getResources().getXml(R.xml.languages)) {
             int eventType = parser.getEventType();
             boolean isCorrectLanguage = false;
@@ -160,7 +160,7 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
                         String keyword = parser.getAttributeValue(null, "keyword");
                         String type = parser.getAttributeValue(null, "type");
                         String description = parser.getAttributeValue(null, "description");
-                        listWords.add(new HelpInfo(keyword, type, description));
+                        listWords.add(new Help(keyword, type, description));
                     }
                 } else if (eventType == XmlPullParser.END_TAG && "language".equals(parser.getName())) {
                     isCorrectLanguage = false;
@@ -176,7 +176,7 @@ public class Help extends Fragment implements AdapterView.OnItemClickListener {
     /**
      * Парсить приклади для вказаної мови.
      *
-     * @param context Контекст для отримання ресурсів.
+     * @param context      Контекст для отримання ресурсів.
      * @param languageName Назва мови, для якої потрібно парсити дані.
      * @return Список об'єктів Example з прикладами.
      */
