@@ -3,120 +3,451 @@
     <language name="BASH">
         <pattern color="-12673846">[\(\)\{\}\[\]]</pattern>
         <pattern color="-1654661">\b([0-9]+)\b</pattern>
-        <pattern color="-11613776">\b(echo|cd|ls|cat|chmod|chown|mv|cp|rm|mkdir|rmdir|pwd|touch|grep|find|sed|awk|head|tail|wc|sort|cut|diff|tar|gzip|gunzip|zip|unzip|ping|curl|wget|ssh|scp|kill|ps|top|df|du|free|uname|date|whoami|man)\b</pattern>
+        <pattern color="-11613776">
+            \b(echo|cd|ls|cat|chmod|chown|mv|cp|rm|mkdir|rmdir|pwd|touch|grep|find|sed|awk|head|tail|wc|sort|cut|diff|tar|gzip|gunzip|zip|unzip|ping|curl|wget|ssh|scp|kill|ps|top|df|du|free|uname|date|whoami|man)\b
+        </pattern>
         <pattern color="-5866496">\b(\d+)\b</pattern>
         <pattern color="-3377102">\b(\/[a-zA-Z0-9._\/-]+)\b</pattern>
         <pattern color="-9791147">#.*</pattern>
-        <pattern color="-11100970">\b(if|then|else|elif|fi|for|while|do|done|case|esac|function|return|break|continue|exit|export|declare|local|readonly|trap|eval|exec|in|select|until|time|shift|getopts)\b</pattern>
-        <pattern color="-2302806">[+\-*\/%&amp;|^!~&lt;&gt;]=?|==|!=|&lt;=|&gt;=|&amp;&amp;|\|\|</pattern>
+        <pattern color="-11100970">
+            \b(if|then|else|elif|fi|for|while|do|done|case|esac|function|return|break|continue|exit|export|declare|local|readonly|trap|eval|exec|in|select|until|time|shift|getopts)\b
+        </pattern>
+        <pattern color="-2302806">[+\-*\/%&amp;|^!~&lt;&gt;]=?|==|!=|&lt;=|&gt;=|&amp;&amp;|\|\|
+        </pattern>
         <pattern color="-5000958">\b\w+\b(?=\s*\()</pattern>
         <pattern color="-2712187">\"(?:\\\\.|[^\\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'</pattern>
         <pattern color="-3239560">\b\$(\w+|\{[^}]+\})\b</pattern>
         <!-- Додаткова інформація -->
-        <info keyword="break" type="Keyword" description="Виходить з циклу або конструкції case. Зазвичай використовується всередині циклів for, while, or until."/>
-        <info keyword="continue" type="Keyword" description="Пропускає залишок циклу і продовжує з наступної ітерації. Зазвичай використовується всередині циклів for, while, or until."/>
-        <info keyword="cd" type="Command" description="Змінює поточний робочий каталог. Наприклад, 'cd /home/user' змінює каталог на /home/user."/>
-        <info keyword="echo" type="Command" description="Виводить текст на стандартний вихідний потік. Може використовуватися для відображення повідомлень або значень змінних."/>
-        <info keyword="export" type="Command" description="Оголошує змінну середовища, яка буде доступна для всіх підпроцесів. Наприклад, 'export PATH=/usr/bin' додає /usr/bin до змінної середовища PATH."/>
-        <info keyword="for" type="Keyword" description="Створює цикл, який виконує команду для кожного значення в списку. Наприклад, 'for i in 1 2 3; do echo $i; done' виведе 1, 2, 3."/>
-        <info keyword="if" type="Keyword" description="Виконує блок команд, якщо умова є істинною. Наприклад, 'if [ -f file.txt ]; then echo 'File exists'; fi' перевіряє наявність файлу file.txt."/>
-        <info keyword="let" type="Command" description="Виконує арифметичні операції в bash. Наприклад, 'let x=5+3' присвоює 8 змінній x."/>
-        <info keyword="read" type="Command" description="Читає вхідні дані з користувача і присвоює їх змінній. Наприклад, 'read name' запитує у користувача введення і зберігає його в змінній name."/>
-        <info keyword="return" type="Command" description="Виходить з функції і повертає значення. Наприклад, 'return 0' повертає 0 з функції."/>
-        <info keyword="set" type="Command" description="Встановлює або переглядає параметри оболонки. Може використовуватися для зміни параметрів виконання скриптів."/>
-        <info keyword="unset" type="Command" description="Видаляє змінну або функцію. Наприклад, 'unset VARIABLE' видаляє змінну VARIABLE."/>
-        <info keyword="while" type="Keyword" description="Створює цикл, який виконує команди, поки умова є істинною. Наприклад, 'while [ $x -lt 10 ]; do echo $x; x=$((x+1)); done' виконує цикл, поки x менше 10."/>
-        <info keyword="case" type="Keyword" description="Виконує блоки команд в залежності від значення змінної. Наприклад, 'case $var in 1) echo 'one';; 2) echo 'two';; esac' виконує команду в залежності від значення $var."/>
-        <info keyword="grep" type="Command" description="Шукає рядки, що відповідають регулярному виразу в файлі або вхідних даних. Наприклад, 'grep 'pattern' file.txt' виведе рядки, що містять 'pattern'."/>
-        <info keyword="awk" type="Command" description="Мова для обробки текстових файлів і даних. Наприклад, 'awk '{print $1}' file.txt' виведе перше поле кожного рядка в file.txt."/>
-        <info keyword="sed" type="Command" description="Редактор потоку для обробки текстових даних. Наприклад, 'sed 's/old/new/g' file.txt' замінює всі 'old' на 'new' у file.txt."/>
-        <info keyword="find" type="Command" description="Шукає файли в каталогах. Наприклад, 'find /home/user -name '*.txt'' знайде всі файли з розширенням .txt у каталозі /home/user."/>
-        <info keyword="xargs" type="Command" description="Перетворює вхідні дані в аргументи для команд. Наприклад, 'find . -name '*.txt' | xargs cat' виведе вміст всіх .txt файлів."/>
-        <info keyword="sort" type="Command" description="Сортує рядки текстового файлу. Наприклад, 'sort file.txt' відсортує рядки в file.txt."/>
-        <info keyword="cut" type="Command" description="Вибирає частини кожного рядка текстового файлу. Наприклад, 'cut -d',' -f1 file.txt' вибирає перше поле в кожному рядку, розділене комою."/>
-        <info keyword="tr" type="Command" description="Заміна або видалення символів. Наприклад, 'echo 'hello' | tr 'a-z' 'A-Z'' перетворює рядок 'hello' в 'HELLO'."/>
-        <info keyword="uniq" type="Command" description="Видаляє повторювані рядки з файлу або з виходу команди. Наприклад, 'sort file.txt | uniq' видаляє повторювані рядки з file.txt після сортування."/>
-        <info keyword="wc" type="Command" description="Підраховує кількість рядків, слів і символів у файлі. Наприклад, 'wc file.txt' виведе кількість рядків, слів і символів у file.txt."/>
-        <info keyword="ps" type="Command" description="Відображає інформацію про запущені процеси. Наприклад, 'ps aux' виведе список всіх запущених процесів."/>
-        <info keyword="kill" type="Command" description="Відправляє сигнал процесу, зазвичай для завершення процесу. Наприклад, 'kill 1234' завершить процес з ID 1234."/>
-        <info keyword="jobs" type="Command" description="Показує список зупинених або фоновых процесів у поточній оболонці."/>
-        <info keyword="fg" type="Command" description="Відновлює зупинений процес на передньому плані. Наприклад, 'fg %1' відновить перший зупинений процес."/>
-        <info keyword="bg" type="Command" description="Відновлює зупинений процес у фоні. Наприклад, 'bg %1' відновить перший зупинений процес у фоні."/>
-        <info keyword="logout" type="Command" description="Виходить з сеансу оболонки. Використовується для завершення сеансу в оболонці."/>
-        <info keyword="history" type="Command" description="Показує історію введених команд. Наприклад, 'history' виведе список раніше введених команд."/>
-        <info keyword="touch" type="Command" description="Створює новий пустий файл або оновлює час останнього доступу і модифікації існуючого файлу."/>
-        <info keyword="chmod" type="Command" description="Змінює права доступу до файлів і каталогів. Наприклад, 'chmod 755 file.txt' задає права для файлу file.txt."/>
-        <info keyword="chown" type="Command" description="Змінює власника і/або групу файлів і каталогів. Наприклад, 'chown user:group file.txt' змінює власника і групу для file.txt."/>
-        <info keyword="ln" type="Command" description="Створює символічне посилання або жорстке посилання на файл. Наприклад, 'ln -s target link' створює символічне посилання."/>
-        <info keyword="mv" type="Command" description="Переміщує або перейменовує файли і каталоги. Наприклад, 'mv file1.txt file2.txt' перейменовує file1.txt на file2.txt."/>
-        <info keyword="cp" type="Command" description="Копіює файли або каталоги. Наприклад, 'cp file1.txt file2.txt' створює копію file1.txt з ім'ям file2.txt."/>
-        <info keyword="rm" type="Command" description="Видаляє файли або каталоги. Наприклад, 'rm file.txt' видаляє файл file.txt."/>
+        <info
+            description="Виходить з циклу або конструкції case. Зазвичай використовується всередині циклів for, while, or until."
+            keyword="break"
+            type="Keyword" />
+        <info
+            description="Пропускає залишок циклу і продовжує з наступної ітерації. Зазвичай використовується всередині циклів for, while, or until."
+            keyword="continue"
+            type="Keyword" />
+        <info
+            description="Змінює поточний робочий каталог. Наприклад, 'cd /home/user' змінює каталог на /home/user."
+            keyword="cd"
+            type="Command" />
+        <info
+            description="Виводить текст на стандартний вихідний потік. Може використовуватися для відображення повідомлень або значень змінних."
+            keyword="echo"
+            type="Command" />
+        <info
+            description="Оголошує змінну середовища, яка буде доступна для всіх підпроцесів. Наприклад, 'export PATH=/usr/bin' додає /usr/bin до змінної середовища PATH."
+            keyword="export"
+            type="Command" />
+        <info
+            description="Створює цикл, який виконує команду для кожного значення в списку. Наприклад, 'for i in 1 2 3; do echo $i; done' виведе 1, 2, 3."
+            keyword="for"
+            type="Keyword" />
+        <info
+            description="Виконує блок команд, якщо умова є істинною. Наприклад, 'if [ -f file.txt ]; then echo 'File exists'; fi' перевіряє наявність файлу file.txt."
+            keyword="if"
+            type="Keyword" />
+        <info
+            description="Виконує арифметичні операції в bash. Наприклад, 'let x=5+3' присвоює 8 змінній x."
+            keyword="let"
+            type="Command" />
+        <info
+            description="Читає вхідні дані з користувача і присвоює їх змінній. Наприклад, 'read name' запитує у користувача введення і зберігає його в змінній name."
+            keyword="read"
+            type="Command" />
+        <info
+            description="Виходить з функції і повертає значення. Наприклад, 'return 0' повертає 0 з функції."
+            keyword="return"
+            type="Command" />
+        <info
+            description="Встановлює або переглядає параметри оболонки. Може використовуватися для зміни параметрів виконання скриптів."
+            keyword="set"
+            type="Command" />
+        <info
+            description="Видаляє змінну або функцію. Наприклад, 'unset VARIABLE' видаляє змінну VARIABLE."
+            keyword="unset"
+            type="Command" />
+        <info
+            description="Створює цикл, який виконує команди, поки умова є істинною. Наприклад, 'while [ $x -lt 10 ]; do echo $x; x=$((x+1)); done' виконує цикл, поки x менше 10."
+            keyword="while"
+            type="Keyword" />
+        <info
+            description="Виконує блоки команд в залежності від значення змінної. Наприклад, 'case $var in 1) echo 'one';; 2) echo 'two';; esac' виконує команду в залежності від значення $var."
+            keyword="case"
+            type="Keyword" />
+        <info
+            description="Шукає рядки, що відповідають регулярному виразу в файлі або вхідних даних. Наприклад, 'grep 'pattern' file.txt' виведе рядки, що містять 'pattern'."
+            keyword="grep"
+            type="Command" />
+        <info
+            description="Мова для обробки текстових файлів і даних. Наприклад, 'awk '{print $1}' file.txt' виведе перше поле кожного рядка в file.txt."
+            keyword="awk"
+            type="Command" />
+        <info
+            description="Редактор потоку для обробки текстових даних. Наприклад, 'sed 's/old/new/g' file.txt' замінює всі 'old' на 'new' у file.txt."
+            keyword="sed"
+            type="Command" />
+        <info
+            description="Шукає файли в каталогах. Наприклад, 'find /home/user -name '*.txt'' знайде всі файли з розширенням .txt у каталозі /home/user."
+            keyword="find"
+            type="Command" />
+        <info
+            description="Перетворює вхідні дані в аргументи для команд. Наприклад, 'find . -name '*.txt' | xargs cat' виведе вміст всіх .txt файлів."
+            keyword="xargs"
+            type="Command" />
+        <info
+            description="Сортує рядки текстового файлу. Наприклад, 'sort file.txt' відсортує рядки в file.txt."
+            keyword="sort"
+            type="Command" />
+        <info
+            description="Вибирає частини кожного рядка текстового файлу. Наприклад, 'cut -d',' -f1 file.txt' вибирає перше поле в кожному рядку, розділене комою."
+            keyword="cut"
+            type="Command" />
+        <info
+            description="Заміна або видалення символів. Наприклад, 'echo 'hello' | tr 'a-z' 'A-Z'' перетворює рядок 'hello' в 'HELLO'."
+            keyword="tr"
+            type="Command" />
+        <info
+            description="Видаляє повторювані рядки з файлу або з виходу команди. Наприклад, 'sort file.txt | uniq' видаляє повторювані рядки з file.txt після сортування."
+            keyword="uniq"
+            type="Command" />
+        <info
+            description="Підраховує кількість рядків, слів і символів у файлі. Наприклад, 'wc file.txt' виведе кількість рядків, слів і символів у file.txt."
+            keyword="wc"
+            type="Command" />
+        <info
+            description="Відображає інформацію про запущені процеси. Наприклад, 'ps aux' виведе список всіх запущених процесів."
+            keyword="ps"
+            type="Command" />
+        <info
+            description="Відправляє сигнал процесу, зазвичай для завершення процесу. Наприклад, 'kill 1234' завершить процес з ID 1234."
+            keyword="kill"
+            type="Command" />
+        <info
+            description="Показує список зупинених або фоновых процесів у поточній оболонці."
+            keyword="jobs"
+            type="Command" />
+        <info
+            description="Відновлює зупинений процес на передньому плані. Наприклад, 'fg %1' відновить перший зупинений процес."
+            keyword="fg"
+            type="Command" />
+        <info
+            description="Відновлює зупинений процес у фоні. Наприклад, 'bg %1' відновить перший зупинений процес у фоні."
+            keyword="bg"
+            type="Command" />
+        <info
+            description="Виходить з сеансу оболонки. Використовується для завершення сеансу в оболонці."
+            keyword="logout"
+            type="Command" />
+        <info
+            description="Показує історію введених команд. Наприклад, 'history' виведе список раніше введених команд."
+            keyword="history"
+            type="Command" />
+        <info
+            description="Створює новий пустий файл або оновлює час останнього доступу і модифікації існуючого файлу."
+            keyword="touch"
+            type="Command" />
+        <info
+            description="Змінює права доступу до файлів і каталогів. Наприклад, 'chmod 755 file.txt' задає права для файлу file.txt."
+            keyword="chmod"
+            type="Command" />
+        <info
+            description="Змінює власника і/або групу файлів і каталогів. Наприклад, 'chown user:group file.txt' змінює власника і групу для file.txt."
+            keyword="chown"
+            type="Command" />
+        <info
+            description="Створює символічне посилання або жорстке посилання на файл. Наприклад, 'ln -s target link' створює символічне посилання."
+            keyword="ln"
+            type="Command" />
+        <info
+            description="Переміщує або перейменовує файли і каталоги. Наприклад, 'mv file1.txt file2.txt' перейменовує file1.txt на file2.txt."
+            keyword="mv"
+            type="Command" />
+        <info
+            description="Копіює файли або каталоги. Наприклад, 'cp file1.txt file2.txt' створює копію file1.txt з ім'ям file2.txt."
+            keyword="cp"
+            type="Command" />
+        <info
+            description="Видаляє файли або каталоги. Наприклад, 'rm file.txt' видаляє файл file.txt."
+            keyword="rm"
+            type="Command" />
+        <info
+            description="Форматовано виводить текст або змінні. Наприклад, 'printf 'Hello, %s!\n' 'world'' виведе 'Hello, world!'."
+            keyword="printf"
+            type="Command" />
+        <info
+            description="Виконує команду, яка є результатом оцінки рядка. Наприклад, 'eval $(echo ls)' виконає команду 'ls'."
+            keyword="eval"
+            type="Command" />
+        <info
+            description="Перевіряє умови, такі як порівняння чисел або рядків. Наприклад, 'test -f file.txt' перевіряє наявність файлу."
+            keyword="test"
+            type="Command" />
+        <info
+            description="Виконує команди з файлу у поточній оболонці. Наприклад, 'source script.sh' виконає команди з 'script.sh'."
+            keyword="source"
+            type="Command" />
+        <info
+            description="Завершує виконання скрипту або виходить з оболонки. Наприклад, 'exit 1' завершить скрипт з кодом виходу 1."
+            keyword="exit"
+            type="Command" />
+        <info
+            description="Створює скорочення для команд. Наприклад, 'alias ll='ls -la'' створює скорочення для команди 'ls -la'."
+            keyword="alias"
+            type="Command" />
+        <info
+            description="Видаляє визначений користувачем псевдонім. Наприклад, 'unalias ll' видалить псевдонім 'll'."
+            keyword="unalias"
+            type="Command" />
+        <info
+            description="Визначає, чи є слово командою, псевдонімом, функцією або ключовим словом. Наприклад, 'type ls' покаже, що 'ls' є командою."
+            keyword="type"
+            type="Command" />
 
     </language>
     <language name="SHELL">
         <pattern color="-12673846">[\(\)\{\}\[\]]</pattern>
         <pattern color="-1654661">\bclass\s+\w+</pattern>
-        <pattern color="-3377102">\b(Get-\w+|Set-\w+|New-\w+|Remove-\w+|Update-\w+|Invoke-\w+)\b</pattern>
+        <pattern color="-3377102">\b(Get-\w+|Set-\w+|New-\w+|Remove-\w+|Update-\w+|Invoke-\w+)\b
+        </pattern>
         <pattern color="-5866496">\b(int|long|float|double|string|bool|array|object)\b</pattern>
-        <pattern color="-11613776">\b(Write-Output|Write-Host|Read-Host|Get-Content|Set-Content|Remove-Item|New-Item|Get-Item|Set-Item|Invoke-Expression|Start-Process|Stop-Process|Get-Command|Import-Module|Export-Csv|ConvertTo-Json|ConvertFrom-Json)\b</pattern>
+        <pattern color="-11613776">
+            \b(Write-Output|Write-Host|Read-Host|Get-Content|Set-Content|Remove-Item|New-Item|Get-Item|Set-Item|Invoke-Expression|Start-Process|Stop-Process|Get-Command|Import-Module|Export-Csv|ConvertTo-Json|ConvertFrom-Json)\b
+        </pattern>
         <pattern color="-9791147">#.*</pattern>
-        <pattern color="-11100970">\b(while|for|foreach|if|elseif|else|switch|case|default|function|return|throw|try|catch|finally|trap|do|continue|break|class|param|dynamicparam|begin|process|end|filter|module|using|namespace|const)\b</pattern>
-        <pattern color="-2302806">[+\-*\/%&amp;|^!~&lt;&gt;]=?|==|!=|&lt;=|&gt;=|&amp;&amp;|\|\|</pattern>
+        <pattern color="-11100970">
+            \b(while|for|foreach|if|elseif|else|switch|case|default|function|return|throw|try|catch|finally|trap|do|continue|break|class|param|dynamicparam|begin|process|end|filter|module|using|namespace|const)\b
+        </pattern>
+        <pattern color="-2302806">[+\-*\/%&amp;|^!~&lt;&gt;]=?|==|!=|&lt;=|&gt;=|&amp;&amp;|\|\|
+        </pattern>
         <pattern color="-5000958">\b\w+\b(?=\s*\()</pattern>
         <pattern color="-2712187">\"(?:\\\\.|[^\\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'</pattern>
         <pattern color="-3239560">\b\$(\w+)\b</pattern>
         <!-- Додаткова інформація -->
-        <info keyword="break" type="Keyword" description="Виходить з циклу або конструкції case. Зазвичай використовується всередині циклів for, while, or until."/>
-        <info keyword="continue" type="Keyword" description="Пропускає залишок циклу і продовжує з наступної ітерації. Зазвичай використовується всередині циклів for, while, or until."/>
-        <info keyword="cd" type="Command" description="Змінює поточний робочий каталог. Наприклад, 'cd /home/user' змінює каталог на /home/user."/>
-        <info keyword="echo" type="Command" description="Виводить текст на стандартний вихідний потік. Може використовуватися для відображення повідомлень або значень змінних."/>
-        <info keyword="export" type="Command" description="Оголошує змінну середовища, яка буде доступна для всіх підпроцесів. Наприклад, 'export PATH=/usr/bin' додає /usr/bin до змінної середовища PATH."/>
-        <info keyword="for" type="Keyword" description="Створює цикл, який виконує команду для кожного значення в списку. Наприклад, 'for i in 1 2 3; do echo $i; done' виведе 1, 2, 3."/>
-        <info keyword="if" type="Keyword" description="Виконує блок команд, якщо умова є істинною. Наприклад, 'if [ -f file.txt ]; then echo 'File exists'; fi' перевіряє наявність файлу file.txt."/>
-        <info keyword="let" type="Command" description="Виконує арифметичні операції в bash. Наприклад, 'let x=5+3' присвоює 8 змінній x."/>
-        <info keyword="read" type="Command" description="Читає вхідні дані з користувача і присвоює їх змінній. Наприклад, 'read name' запитує у користувача введення і зберігає його в змінній name."/>
-        <info keyword="return" type="Command" description="Виходить з функції і повертає значення. Наприклад, 'return 0' повертає 0 з функції."/>
-        <info keyword="set" type="Command" description="Встановлює або переглядає параметри оболонки. Може використовуватися для зміни параметрів виконання скриптів."/>
-        <info keyword="unset" type="Command" description="Видаляє змінну або функцію. Наприклад, 'unset VARIABLE' видаляє змінну VARIABLE."/>
-        <info keyword="while" type="Keyword" description="Створює цикл, який виконує команди, поки умова є істинною. Наприклад, 'while [ $x -lt 10 ]; do echo $x; x=$((x+1)); done' виконує цикл, поки x менше 10."/>
-        <info keyword="case" type="Keyword" description="Виконує блоки команд в залежності від значення змінної. Наприклад, 'case $var in 1) echo &quot;one&quot;; 2) echo &quot;two&quot;; esac' виконує команду в залежності від значення $var."/>
-        <info keyword="grep" type="Command" description="Шукає рядки, що відповідають регулярному виразу в файлі або вхідних даних. Наприклад, 'grep 'pattern' file.txt' виведе рядки, що містять 'pattern'."/>
-        <info keyword="awk" type="Command" description="Мова для обробки текстових файлів і даних. Наприклад, 'awk '{print $1}' file.txt' виведе перше поле кожного рядка в file.txt."/>
-        <info keyword="sed" type="Command" description="Редактор потоку для обробки текстових даних. Наприклад, 'sed 's/old/new/g' file.txt' замінює всі 'old' на 'new' у file.txt."/>
-        <info keyword="find" type="Command" description="Шукає файли в каталогах. Наприклад, 'find /home/user -name '*.txt'' знайде всі файли з розширенням .txt у каталозі /home/user."/>
-        <info keyword="xargs" type="Command" description="Перетворює вхідні дані в аргументи для команд. Наприклад, 'find . -name '*.txt' | xargs cat' виведе вміст всіх .txt файлів."/>
-        <info keyword="sort" type="Command" description="Сортує рядки текстового файлу. Наприклад, 'sort file.txt' відсортує рядки в file.txt."/>
-        <info keyword="cut" type="Command" description="Вибирає частини кожного рядка текстового файлу. Наприклад, 'cut -d',' -f1 file.txt' вибирає перше поле в кожному рядку, розділене комою."/>
-        <info keyword="tr" type="Command" description="Заміна або видалення символів. Наприклад, 'echo 'hello' | tr 'a-z' 'A-Z'' перетворює рядок 'hello' в 'HELLO'."/>
-        <info keyword="uniq" type="Command" description="Видаляє повторювані рядки з файлу або з виходу команди. Наприклад, 'sort file.txt | uniq' видаляє повторювані рядки з file.txt після сортування."/>
-        <info keyword="wc" type="Command" description="Підраховує кількість рядків, слів і символів у файлі. Наприклад, 'wc file.txt' виведе кількість рядків, слів і символів у file.txt."/>
-        <info keyword="ps" type="Command" description="Відображає інформацію про запущені процеси. Наприклад, 'ps aux' виведе список всіх запущених процесів."/>
-        <info keyword="kill" type="Command" description="Відправляє сигнал процесу, зазвичай для завершення процесу. Наприклад, 'kill 1234' завершить процес з ID 1234."/>
-        <info keyword="jobs" type="Command" description="Показує список зупинених або фоновых процесів у поточній оболонці."/>
-        <info keyword="fg" type="Command" description="Відновлює зупинений процес на передньому плані. Наприклад, 'fg %1' відновить перший зупинений процес."/>
-        <info keyword="bg" type="Command" description="Відновлює зупинений процес у фоні. Наприклад, 'bg %1' відновить перший зупинений процес у фоні."/>
-        <info keyword="logout" type="Command" description="Виходить з сеансу оболонки. Використовується для завершення сеансу в оболонці."/>
-        <info keyword="history" type="Command" description="Показує історію введених команд. Наприклад, 'history' виведе список раніше введених команд."/>
-        <info keyword="touch" type="Command" description="Створює новий пустий файл або оновлює час останнього доступу і модифікації існуючого файлу."/>
-        <info keyword="chmod" type="Command" description="Змінює права доступу до файлів і каталогів. Наприклад, 'chmod 755 file.txt' задає права для файлу file.txt."/>
-        <info keyword="chown" type="Command" description="Змінює власника і/або групу файлів і каталогів. Наприклад, 'chown user:group file.txt' змінює власника і групу для file.txt."/>
-        <info keyword="ln" type="Command" description="Створює символічне посилання або жорстке посилання на файл. Наприклад, 'ln -s target link' створює символічне посилання."/>
-        <info keyword="mv" type="Command" description="Переміщує або перейменовує файли і каталоги. Наприклад, 'mv file1.txt file2.txt' перейменовує file1.txt на file2.txt."/>
-        <info keyword="cp" type="Command" description="Копіює файли або каталоги. Наприклад, 'cp file1.txt file2.txt' створює копію file1.txt з ім'ям file2.txt."/>
-        <info keyword="rm" type="Command" description="Видаляє файли або каталоги. Наприклад, 'rm file.txt' видаляє файл file.txt."/>
+        <info
+            description="Виходить з циклу або конструкції case. Зазвичай використовується всередині циклів for, while, or until."
+            keyword="break"
+            type="Keyword" />
+        <info
+            description="Пропускає залишок циклу і продовжує з наступної ітерації. Зазвичай використовується всередині циклів for, while, or until."
+            keyword="continue"
+            type="Keyword" />
+        <info
+            description="Змінює поточний робочий каталог. Наприклад, 'cd /home/user' змінює каталог на /home/user."
+            keyword="cd"
+            type="Command" />
+        <info
+            description="Виводить текст на стандартний вихідний потік. Може використовуватися для відображення повідомлень або значень змінних."
+            keyword="echo"
+            type="Command" />
+        <info
+            description="Оголошує змінну середовища, яка буде доступна для всіх підпроцесів. Наприклад, 'export PATH=/usr/bin' додає /usr/bin до змінної середовища PATH."
+            keyword="export"
+            type="Command" />
+        <info
+            description="Створює цикл, який виконує команду для кожного значення в списку. Наприклад, 'for i in 1 2 3; do echo $i; done' виведе 1, 2, 3."
+            keyword="for"
+            type="Keyword" />
+        <info
+            description="Виконує блок команд, якщо умова є істинною. Наприклад, 'if [ -f file.txt ]; then echo 'File exists'; fi' перевіряє наявність файлу file.txt."
+            keyword="if"
+            type="Keyword" />
+        <info
+            description="Виконує арифметичні операції в bash. Наприклад, 'let x=5+3' присвоює 8 змінній x."
+            keyword="let"
+            type="Command" />
+        <info
+            description="Читає вхідні дані з користувача і присвоює їх змінній. Наприклад, 'read name' запитує у користувача введення і зберігає його в змінній name."
+            keyword="read"
+            type="Command" />
+        <info
+            description="Виходить з функції і повертає значення. Наприклад, 'return 0' повертає 0 з функції."
+            keyword="return"
+            type="Command" />
+        <info
+            description="Встановлює або переглядає параметри оболонки. Може використовуватися для зміни параметрів виконання скриптів."
+            keyword="set"
+            type="Command" />
+        <info
+            description="Видаляє змінну або функцію. Наприклад, 'unset VARIABLE' видаляє змінну VARIABLE."
+            keyword="unset"
+            type="Command" />
+        <info
+            description="Створює цикл, який виконує команди, поки умова є істинною. Наприклад, 'while [ $x -lt 10 ]; do echo $x; x=$((x+1)); done' виконує цикл, поки x менше 10."
+            keyword="while"
+            type="Keyword" />
+        <info
+            description="Виконує блоки команд в залежності від значення змінної. Наприклад, 'case $var in 1) echo &quot;one&quot;; 2) echo &quot;two&quot;; esac' виконує команду в залежності від значення $var."
+            keyword="case"
+            type="Keyword" />
+        <info
+            description="Шукає рядки, що відповідають регулярному виразу в файлі або вхідних даних. Наприклад, 'grep 'pattern' file.txt' виведе рядки, що містять 'pattern'."
+            keyword="grep"
+            type="Command" />
+        <info
+            description="Мова для обробки текстових файлів і даних. Наприклад, 'awk '{print $1}' file.txt' виведе перше поле кожного рядка в file.txt."
+            keyword="awk"
+            type="Command" />
+        <info
+            description="Редактор потоку для обробки текстових даних. Наприклад, 'sed 's/old/new/g' file.txt' замінює всі 'old' на 'new' у file.txt."
+            keyword="sed"
+            type="Command" />
+        <info
+            description="Шукає файли в каталогах. Наприклад, 'find /home/user -name '*.txt'' знайде всі файли з розширенням .txt у каталозі /home/user."
+            keyword="find"
+            type="Command" />
+        <info
+            description="Перетворює вхідні дані в аргументи для команд. Наприклад, 'find . -name '*.txt' | xargs cat' виведе вміст всіх .txt файлів."
+            keyword="xargs"
+            type="Command" />
+        <info
+            description="Сортує рядки текстового файлу. Наприклад, 'sort file.txt' відсортує рядки в file.txt."
+            keyword="sort"
+            type="Command" />
+        <info
+            description="Вибирає частини кожного рядка текстового файлу. Наприклад, 'cut -d',' -f1 file.txt' вибирає перше поле в кожному рядку, розділене комою."
+            keyword="cut"
+            type="Command" />
+        <info
+            description="Заміна або видалення символів. Наприклад, 'echo 'hello' | tr 'a-z' 'A-Z'' перетворює рядок 'hello' в 'HELLO'."
+            keyword="tr"
+            type="Command" />
+        <info
+            description="Видаляє повторювані рядки з файлу або з виходу команди. Наприклад, 'sort file.txt | uniq' видаляє повторювані рядки з file.txt після сортування."
+            keyword="uniq"
+            type="Command" />
+        <info
+            description="Підраховує кількість рядків, слів і символів у файлі. Наприклад, 'wc file.txt' виведе кількість рядків, слів і символів у file.txt."
+            keyword="wc"
+            type="Command" />
+        <info
+            description="Відображає інформацію про запущені процеси. Наприклад, 'ps aux' виведе список всіх запущених процесів."
+            keyword="ps"
+            type="Command" />
+        <info
+            description="Відправляє сигнал процесу, зазвичай для завершення процесу. Наприклад, 'kill 1234' завершить процес з ID 1234."
+            keyword="kill"
+            type="Command" />
+        <info
+            description="Показує список зупинених або фоновых процесів у поточній оболонці."
+            keyword="jobs"
+            type="Command" />
+        <info
+            description="Відновлює зупинений процес на передньому плані. Наприклад, 'fg %1' відновить перший зупинений процес."
+            keyword="fg"
+            type="Command" />
+        <info
+            description="Відновлює зупинений процес у фоні. Наприклад, 'bg %1' відновить перший зупинений процес у фоні."
+            keyword="bg"
+            type="Command" />
+        <info
+            description="Виходить з сеансу оболонки. Використовується для завершення сеансу в оболонці."
+            keyword="logout"
+            type="Command" />
+        <info
+            description="Показує історію введених команд. Наприклад, 'history' виведе список раніше введених команд."
+            keyword="history"
+            type="Command" />
+        <info
+            description="Створює новий пустий файл або оновлює час останнього доступу і модифікації існуючого файлу."
+            keyword="touch"
+            type="Command" />
+        <info
+            description="Змінює права доступу до файлів і каталогів. Наприклад, 'chmod 755 file.txt' задає права для файлу file.txt."
+            keyword="chmod"
+            type="Command" />
+        <info
+            description="Змінює власника і/або групу файлів і каталогів. Наприклад, 'chown user:group file.txt' змінює власника і групу для file.txt."
+            keyword="chown"
+            type="Command" />
+        <info
+            description="Створює символічне посилання або жорстке посилання на файл. Наприклад, 'ln -s target link' створює символічне посилання."
+            keyword="ln"
+            type="Command" />
+        <info
+            description="Переміщує або перейменовує файли і каталоги. Наприклад, 'mv file1.txt file2.txt' перейменовує file1.txt на file2.txt."
+            keyword="mv"
+            type="Command" />
+        <info
+            description="Копіює файли або каталоги. Наприклад, 'cp file1.txt file2.txt' створює копію file1.txt з ім'ям file2.txt."
+            keyword="cp"
+            type="Command" />
+        <info
+            description="Видаляє файли або каталоги. Наприклад, 'rm file.txt' видаляє файл file.txt."
+            keyword="rm"
+            type="Command" />
+        <info
+            description="Відображає поточний робочий каталог. Наприклад, 'pwd' виводить шлях до поточного каталогу."
+            keyword="pwd"
+            type="Command" />
+        <info
+            description="Створює псевдонім для команди. Наприклад, 'alias ll='ls -la'' створює псевдонім 'll' для команди 'ls -la'."
+            keyword="alias"
+            type="Command" />
+        <info
+            description="Видаляє один або більше псевдонімів. Наприклад, 'unalias ll' видаляє псевдонім 'll'."
+            keyword="unalias"
+            type="Command" />
+        <info
+            description="Показує, чи є слово командою, псевдонімом, функцією або ключовим словом. Наприклад, 'type ls' покаже, що 'ls' є командою."
+            keyword="type"
+            type="Command" />
+        <info
+            description="Перевіряє вирази. Наприклад, 'test -f file.txt' перевіряє існування файлу file.txt."
+            keyword="test"
+            type="Command" />
+        <info
+            description="Установлює команди, які виконуватимуться при отриманні оболонкою певного сигналу. Наприклад, 'trap 'echo Interrupted' INT' виконує команду при натисканні Ctrl+C."
+            keyword="trap"
+            type="Command" />
+        <info
+            description="Встановлює маску прав доступу для новостворених файлів і каталогів. Наприклад, 'umask 022' встановлює права на нові файли як 755."
+            keyword="umask"
+            type="Command" />
+        <info
+            description="Замінює поточний процес оболонки на іншу команду. Наприклад, 'exec ls' замінює оболонку командою 'ls'."
+            keyword="exec"
+            type="Command" />
+        <info
+            description="Задає обмеження на ресурси для процесів, запущених з оболонки. Наприклад, 'ulimit -n 1024' обмежує кількість відкритих файлових дескрипторів до 1024."
+            keyword="ulimit"
+            type="Command" />
+        <info
+            description="Очікує завершення процесу, вказаного по PID. Наприклад, 'wait 1234' чекає завершення процесу з ID 1234."
+            keyword="wait"
+            type="Command" />
+        <info
+            description="Виконує команди з файлу у поточній оболонці. Наприклад, 'source script.sh' виконає команди з 'script.sh'."
+            keyword="source"
+            type="Command" />
+        <info
+            description="Форматований вивід даних. Наприклад, 'printf '%s\n' 'Hello, World!'' виведе 'Hello, World!'."
+            keyword="printf"
+            type="Command" />
 
     </language>
     <language name="Python">
-        <pattern color="-3839369">\b(self|def|as|assert|break|continue|del|except|finally|from|global|import|in|pass|raise|return|try|with|yield)\b</pattern>
-        <pattern color="-12673846">\b(False|None|True|and|nonlocal|not|or|class|is|lambda)\b</pattern>
+        <pattern color="-3839369">
+            \b(self|def|as|assert|break|continue|del|except|finally|from|global|import|in|pass|raise|return|try|with|yield)\b
+        </pattern>
+        <pattern color="-12673846">\b(False|None|True|and|nonlocal|not|or|class|is|lambda)\b
+        </pattern>
         <pattern color="-13672557">\b\d+\b</pattern>
-        <pattern color="-13981264">\b(pass|Options|dict|slice|object|staticmethod|str|int|bool|super|tuple|bytearray|float|bytes|type|property|list|frozenset|classmethod|complex|set)\b</pattern>
-        <pattern color="-3377102">\b(min|setattr|abs|all|dir|hex|next|any|divmod|id|sorted|ascii|enumerate|input|oct|max|round|bin|eval|exec|isinstance|ord|sum|filter|issubclass|pow|iter|print|callable|format|delattr|len|chr|range|vars|getattr|locals|repr|zip|compile|globals|map|reversed|__import__|hasattr|hash|memoryview)\b</pattern>
-        <pattern color="-5000958">\b(capitalize|casefold|center|count|encode|endswith|expandtabs|find|index|isalnum|isalpha|isascii|isdigit|isidentifier|islower|isnumeric|isprintable|isspace|istitle|isupper|join|ljust|lower|lstrip|rstrip|maketrans|partition|replace|rfind|rindex|rjust|rpartition|rsplit|split|splitlines|startswith|strip|swapcase|title|translate|upper|zfill)\b</pattern>
-        <pattern color="-5000958">\b(append|extend|insert|remove|pop|clear|sort|reverse|copy)\b</pattern>
-        <pattern color="-5000958">\b(fromkeys|get|items|keys|popitem|setdefault|update|values)\b</pattern>
+        <pattern color="-13981264">
+            \b(pass|Options|dict|slice|object|staticmethod|str|int|bool|super|tuple|bytearray|float|bytes|type|property|list|frozenset|classmethod|complex|set)\b
+        </pattern>
+        <pattern color="-3377102">
+            \b(min|setattr|abs|all|dir|hex|next|any|divmod|id|sorted|ascii|enumerate|input|oct|max|round|bin|eval|exec|isinstance|ord|sum|filter|issubclass|pow|iter|print|callable|format|delattr|len|chr|range|vars|getattr|locals|repr|zip|compile|globals|map|reversed|__import__|hasattr|hash|memoryview)\b
+        </pattern>
+        <pattern color="-5000958">
+            \b(capitalize|casefold|center|count|encode|endswith|expandtabs|find|index|isalnum|isalpha|isascii|isdigit|isidentifier|islower|isnumeric|isprintable|isspace|istitle|isupper|join|ljust|lower|lstrip|rstrip|maketrans|partition|replace|rfind|rindex|rjust|rpartition|rsplit|split|splitlines|startswith|strip|swapcase|title|translate|upper|zfill)\b
+        </pattern>
+        <pattern color="-5000958">\b(append|extend|insert|remove|pop|clear|sort|reverse|copy)\b
+        </pattern>
+        <pattern color="-5000958">\b(fromkeys|get|items|keys|popitem|setdefault|update|values)\b
+        </pattern>
         <pattern color="-10187592">\b([a-zA-Z])\b</pattern>
-        <pattern color="-5000958">\b(read|write|tell|seek|close|open|closed|mode|name|softspace)\b</pattern>
+        <pattern color="-5000958">\b(read|write|tell|seek|close|open|closed|mode|name|softspace)\b
+        </pattern>
         <pattern color="-8892498">\b(file_name|access_mode|buffering)\b</pattern>
         <pattern color="-10323113">#.*</pattern>
         <pattern color="-4949684">\"(?:\\\\.|[^\\"\\\\])*\"</pattern>
@@ -127,68 +458,403 @@
         <pattern color="-12673846">\b(while|for|if|elif|else)\b</pattern>
         <pattern color="-3239560">\"\"\"[\s\S]*?\"\"\"|''''[\s\S]*?'</pattern>
         <!-- Додаткова інформація -->
-        <info keyword="finally" type="Keyword" description="Використовується в конструкції try-except для визначення коду, який буде виконано після завершення блоків try і except, незалежно від того, чи виникла помилка чи ні."/>
-        <info keyword="self" type="Keyword" description="Посилання на екземпляр класу всередині методів класу. Обов'язковий перший параметр для методів класу."/>
-        <info keyword="def" type="Keyword" description="Визначає функцію. Після 'def' слідує ім'я функції, список параметрів в дужках та блок коду, що виконуватиметься при виклику функції."/>
-        <info keyword="class" type="Keyword" description="Визначає новий клас. Слово 'class' слідує за ім'ям класу, а також, за бажанням, батьківським класом. Містить атрибути та методи класу."/>
-        <info keyword="import" type="Keyword" description="Імпортує модулі або функції з інших модулів. Можна імпортувати весь модуль або лише окремі елементи."/>
-        <info keyword="if" type="Keyword" description="Умова для виконання блоку коду. Виконує блок коду, якщо умова в 'if' є істинною."/>
-        <info keyword="else" type="Keyword" description="Виконує блок коду, якщо умова в 'if' або 'elif' є хибною. Часто використовується разом з 'if'."/>
-        <info keyword="elif" type="Keyword" description="Додає додаткові умови після 'if'. Виконує блок коду, якщо відповідна умова є істинною і попередні умови були хибними."/>
-        <info keyword="for" type="Keyword" description="Цикл для ітерації по елементах послідовності (списки, кортежі, рядки) або інших ітерабельних об'єктів."/>
-        <info keyword="while" type="Keyword" description="Цикл, який виконує блок коду, поки задана умова є істинною."/>
-        <info keyword="try" type="Keyword" description="Блок коду, в якому можуть виникнути винятки. Використовується разом з 'except' і 'finally' для обробки помилок."/>
-        <info keyword="except" type="Keyword" description="Блок коду, який виконується, якщо в блоці 'try' виникає виняток. Може бути специфічний для різних типів помилок."/>
-        <info keyword="raise" type="Keyword" description="Викидає виняток. Може бути використано для створення нових винятків або повторення існуючих."/>
-        <info keyword="with" type="Keyword" description="Контекстний менеджер для автоматичного очищення ресурсів. Використовується для роботи з ресурсами, такими як файли, що повинні бути закриті після використання."/>
-        <info keyword="yield" type="Keyword" description="Використовується в генераторах для повернення значень одне за одним. Функція з 'yield' стає генератором, а не звичайною функцією."/>
-        <info keyword="min" type="Function" description="Повертає найменше з переданих значень або ітерабельного об'єкта."/>
-        <info keyword="setattr" type="Function" description="Встановлює значення атрибута об'єкта. Параметри: об'єкт, ім'я атрибута, нове значення."/>
-        <info keyword="abs" type="Function" description="Повертає абсолютне значення числа. Використовується для роботи з від'ємними числами."/>
-        <info keyword="all" type="Function" description="Перевіряє, чи всі елементи ітерабельного об'єкта є істинними. Повертає True, якщо всі істинні, інакше False."/>
-        <info keyword="dir" type="Function" description="Повертає список атрибутів і методів об'єкта. Може бути використано для отримання списку доступних атрибутів об'єкта."/>
-        <info keyword="hex" type="Function" description="Повертає шістнадцяткову строку для цілих чисел. Підходить для перетворення чисел в шістнадцятковий формат."/>
-        <info keyword="next" type="Function" description="Повертає наступний елемент з ітератора. Може бути використано для отримання наступного значення з генератора."/>
-        <info keyword="any" type="Function" description="Перевіряє, чи будь-який з елементів ітерабельного об'єкта є істинним. Повертає True, якщо хоча б один істинний, інакше False."/>
-        <info keyword="divmod" type="Function" description="Повертає кортеж, що містить результат ділення та залишок ділення двох чисел."/>
-        <info keyword="id" type="Function" description="Повертає унікальний ідентифікатор об'єкта, що є його пам'яттю в Python."/>
-        <info keyword="sorted" type="Function" description="Повертає новий відсортований список з переданого ітерабельного об'єкта."/>
-        <info keyword="ascii" type="Function" description="Повертає рядок, що містить видимі символи з переданого об'єкта, замінюючи невидимі символи на escape-послідовності."/>
-        <info keyword="enumerate" type="Function" description="Повертає ітератор, який генерує пари індекс-значення для кожного елемента в ітерабельному об'єкті."/>
-        <info keyword="input" type="Function" description="Читає рядок з вводу користувача. Використовується для отримання даних від користувача."/>
-        <info keyword="oct" type="Function" description="Повертає октальну строку для цілих чисел. Використовується для перетворення чисел в октальний формат."/>
-        <info keyword="max" type="Function" description="Повертає найбільше з переданих значень або ітерабельного об'єкта."/>
-        <info keyword="round" type="Function" description="Округлює число до найближчого цілого або до вказаного числа знаків після коми."/>
-        <info keyword="bin" type="Function" description="Повертає бінарну строку для цілих чисел. Використовується для перетворення чисел в бінарний формат."/>
-        <info keyword="eval" type="Function" description="Виконує динамічний код Python, переданий як рядок. Може використовуватися для виконання рядкових виразів."/>
-        <info keyword="exec" type="Function" description="Виконує динамічний код Python, переданий як рядок. Може використовуватися для виконання складних фрагментів коду."/>
-        <info keyword="isinstance" type="Function" description="Перевіряє, чи є об'єкт екземпляром вказаного класу або кортежу класів."/>
-        <info keyword="ord" type="Function" description="Повертає ціле число, яке є Unicode-кодом символу. Використовується для роботи з символами."/>
-        <info keyword="sum" type="Function" description="Повертає суму всіх елементів ітерабельного об'єкта."/>
-        <info keyword="filter" type="Function" description="Фільтрує елементи ітерабельного об'єкта за допомогою функції. Повертає ітератор з елементами, які відповідають умові."/>
-        <info keyword="issubclass" type="Function" description="Перевіряє, чи є клас підкласом вказаного класу або кортежу класів."/>
-        <info keyword="pow" type="Function" description="Повертає число підняте до ступеня або число підняте до ступеня з модулем. Може бути використано для роботи з степенями."/>
-        <info keyword="iter" type="Function" description="Повертає ітератор для об'єкта. Може бути використано для створення ітератора з об'єкта, що підтримує ітерування."/>
-        <info keyword="print" type="Function" description="Виводить об'єкти в стандартний вихідний потік. Може виводити кілька об'єктів з роздільниками."/>
-        <info keyword="callable" type="Function" description="Перевіряє, чи об'єкт є викликаним (наприклад, функцією або методом). Повертає True або False."/>
-        <info keyword="format" type="Function" description="Форматує рядок за допомогою форматування. Може використовуватися для створення рядків з певними значеннями."/>
-        <info keyword="delattr" type="Function" description="Видаляє атрибут з об'єкта. Параметри: об'єкт та ім'я атрибута, який потрібно видалити."/>
-        <info keyword="len" type="Function" description="Повертає довжину (кількість елементів) об'єкта. Може бути використано для отримання кількості елементів в списку, рядку тощо."/>
-        <info keyword="chr" type="Function" description="Повертає символ, відповідний Unicode-коду. Використовується для роботи з символами та їх кодами."/>
-        <info keyword="range" type="Function" description="Повертає ітератор, що генерує послідовність чисел. Використовується для створення послідовностей чисел у циклах."/>
-        <info keyword="vars" type="Function" description="Повертає словник, що містить локальні змінні. Може бути використано для отримання змінних з поточного контексту."/>
-        <info keyword="getattr" type="Function" description="Повертає значення атрибута об'єкта. Може бути використано для динамічного доступу до атрибутів."/>
-        <info keyword="locals" type="Function" description="Повертає словник з локальними змінними в поточному контексті."/>
-        <info keyword="repr" type="Function" description="Повертає рядкове представлення об'єкта. Використовується для отримання текстового вигляду об'єкта."/>
-        <info keyword="zip" type="Function" description="Об'єднує кілька ітерабельних об'єктів в кортежі. Використовується для паралельного проходження по кількох списках."/>
-        <info keyword="compile" type="Function" description="Компілює рядковий код в об'єкт коду Python. Використовується для виконання динамічного коду."/>
-        <info keyword="globals" type="Function" description="Повертає словник глобальних змінних. Може бути використано для отримання змінних з глобального контексту."/>
-        <info keyword="map" type="Function" description="Застосовує функцію до кожного елемента ітерабельного об'єкта. Повертає ітератор з результатами."/>
-        <info keyword="reversed" type="Function" description="Повертає ітератор, що генерує елементи у зворотному порядку. Використовується для реверсування послідовностей."/>
-        <info keyword="__import__" type="Function" description="Використовується для імпорту модулів в динамічний спосіб. Може бути використано для імпорту модулів з рядків."/>
-        <info keyword="hasattr" type="Function" description="Перевіряє, чи об'єкт має певний атрибут. Повертає True або False."/>
-        <info keyword="hash" type="Function" description="Повертає хеш-значення об'єкта. Використовується для отримання хешу об'єкта для роботи з хеш-таблицями."/>
-        <info keyword="memoryview" type="Function" description="Створює об'єкт перегляду пам'яті для даних, що підтримують буферний протокол. Може бути використано для доступу до даних без копіювання."/>
+        <info
+            description="Представляє false у Python. Використовується у порівняннях і умовних операціях."
+            keyword="False"
+            type="Keyword" />
+        <info
+            description="Представляє відсутність значення. Використовується для ініціалізації змінних і як значення за замовчуванням."
+            keyword="None"
+            type="Keyword" />
+        <info
+            description="Представляє true у Python. Використовується у порівняннях і умовних операціях."
+            keyword="True"
+            type="Keyword" />
+        <info
+            description="Логічний оператор, який повертає true, якщо обидва операнди є true."
+            keyword="and"
+            type="Keyword" />
+        <info
+            description="Використовується для створення псевдонімів при імпорті і для управління контекстами."
+            keyword="as"
+            type="Keyword" />
+        <info
+            description="Використовується для перевірки виразів і викидання виключень, якщо вираз є false."
+            keyword="assert"
+            type="Keyword" />
+        <info
+            description="Перериває виконання найближчого циклу."
+            keyword="break"
+            type="Keyword" />
+        <info
+            description="Визначає новий клас."
+            keyword="class"
+            type="Keyword" />
+        <info
+            description="Пропускає залишок коду в циклі і переходить до наступної ітерації."
+            keyword="continue"
+            type="Keyword" />
+        <info
+            description="Визначає нову функцію або метод."
+            keyword="def"
+            type="Keyword" />
+        <info
+            description="Видаляє об'єкт."
+            keyword="del"
+            type="Keyword" />
+        <info
+            description="Використовується у умовних конструкціях для перевірки додаткових умов."
+            keyword="elif"
+            type="Keyword" />
+        <info
+            description="Використовується у умовних конструкціях для обробки випадку, коли жодна умова не є істинною."
+            keyword="else"
+            type="Keyword" />
+        <info
+            description="Обробляє виключення, які виникають під час виконання коду."
+            keyword="except"
+            type="Keyword" />
+        <info
+            description="Визначає блок коду, який буде виконано після блоку try-except, незалежно від того, чи виникла помилка."
+            keyword="finally"
+            type="Keyword" />
+        <info
+            description="Розпочинає цикл, який ітерує через послідовність."
+            keyword="for"
+            type="Keyword" />
+        <info
+            description="Використовується при імпорті для визначення, з якого модуля імплементуються компоненти."
+            keyword="from"
+            type="Keyword" />
+        <info
+            description="Оголошує змінну глобальною, щоб використовувати її поза локальним простором імен."
+            keyword="global"
+            type="Keyword" />
+        <info
+            description="Розпочинає умовну конструкцію."
+            keyword="if"
+            type="Keyword" />
+        <info
+            description="Імплементує модулі та їх компоненти в поточний простір імен."
+            keyword="import"
+            type="Keyword" />
+        <info
+            description="Перевіряє, чи є значення в послідовності чи ітераторі."
+            keyword="in"
+            type="Keyword" />
+        <info
+            description="Порівнює ідентичність двох об'єктів."
+            keyword="is"
+            type="Keyword" />
+        <info
+            description="Визначає анонімну функцію на один рядок."
+            keyword="lambda"
+            type="Keyword" />
+        <info
+            description="Оголошує змінну не локальною, щоб посилатися на змінну в зовнішньому контексті."
+            keyword="nonlocal"
+            type="Keyword" />
+        <info
+            description="Логічний оператор, який повертає протилежне значення булевому виразу."
+            keyword="not"
+            type="Keyword" />
+        <info
+            description="Логічний оператор, який повертає true, якщо хоча б один з операндів є true."
+            keyword="or"
+            type="Keyword" />
+        <info
+            description="Місце для коду, яке нічого не виконує. Використовується для визначення порожніх функцій і класів."
+            keyword="pass"
+            type="Keyword" />
+        <info
+            description="Викидає виключення."
+            keyword="raise"
+            type="Keyword" />
+        <info
+            description="Повертає значення з функції чи методу."
+            keyword="return"
+            type="Keyword" />
+        <info
+            description="Розпочинає блок коду, який може викликати виключення."
+            keyword="try"
+            type="Keyword" />
+        <info
+            description="Розпочинає цикл, який виконується поки умова є істинною."
+            keyword="while"
+            type="Keyword" />
+        <info
+            description="Визначає контекст для автоматичного управління ресурсами."
+            keyword="with"
+            type="Keyword" />
+        <info
+            description="Повертає значення з генератора без завершення функції."
+            keyword="yield"
+            type="Keyword" />
+        <!-- Functions -->
+        <info
+            description="Повертає абсолютне значення числа."
+            keyword="abs()"
+            type="Function" />
+        <info
+            description="Повертає true, якщо всі елементи ітератора є істинними."
+            keyword="all()"
+            type="Function" />
+        <info
+            description="Повертає true, якщо хоча б один з елементів ітератора є істинним."
+            keyword="any()"
+            type="Function" />
+        <info
+            description="Повертає рядкове представлення об'єкта з ASCII-символами."
+            keyword="ascii()"
+            type="Function" />
+        <info
+            description="Перетворює ціле число в рядкове представлення у двійковій системі."
+            keyword="bin()"
+            type="Function" />
+        <info
+            description="Перетворює значення в його булевий еквівалент."
+            keyword="bool()"
+            type="Function" />
+        <info
+            description="Повертає новий об'єкт bytearray, який є змінним."
+            keyword="bytearray()"
+            type="Function" />
+        <info
+            description="Перетворює об'єкт на незмінну послідовність байтів."
+            keyword="bytes()"
+            type="Function" />
+        <info
+            description="Повертає true, якщо об'єкт можна викликати як функцію."
+            keyword="callable()"
+            type="Function" />
+        <info
+            description="Перетворює ціле число в відповідний символ."
+            keyword="chr()"
+            type="Function" />
+        <info
+            description="Перетворює метод у метод класу."
+            keyword="classmethod()"
+            type="Function" />
+        <info
+            description="Компілює вихідний код у об'єкт коду, який можна виконати."
+            keyword="compile()"
+            type="Function" />
+        <info
+            description="Створює комплексне число."
+            keyword="complex()"
+            type="Function" />
+        <info
+            description="Видаляє атрибут з об'єкта."
+            keyword="delattr()"
+            type="Function" />
+        <info
+            description="Створює новий словник."
+            keyword="dict()"
+            type="Function" />
+        <info
+            description="Повертає список імен у локальному просторі імен."
+            keyword="dir()"
+            type="Function" />
+        <info
+            description="Повертає кортеж з частки і залишку від ділення."
+            keyword="divmod()"
+            type="Function" />
+        <info
+            description="Повертає об'єкт перерахування."
+            keyword="enumerate()"
+            type="Function" />
+        <info
+            description="Оцінює вираз у рядку."
+            keyword="eval()"
+            type="Function" />
+        <info
+            description="Виконує код у рядку."
+            keyword="exec()"
+            type="Function" />
+        <info
+            description="Виходить з інтерпретатора."
+            keyword="exit()"
+            type="Function" />
+        <info
+            description="Фільтрує елементи ітератора за допомогою функції."
+            keyword="filter()"
+            type="Function" />
+        <info
+            description="Перетворює значення на число з плаваючою комою."
+            keyword="float()"
+            type="Function" />
+        <info
+            description="Форматує значення у рядок."
+            keyword="format()"
+            type="Function" />
+        <info
+            description="Створює незмінний набір."
+            keyword="frozenset()"
+            type="Function" />
+        <info
+            description="Повертає значення атрибута об'єкта."
+            keyword="getattr()"
+            type="Function" />
+        <info
+            description="Повертає true, якщо об'єкт має вказаний атрибут."
+            keyword="hasattr()"
+            type="Function" />
+        <info
+            description="Повертає хеш-значення об'єкта."
+            keyword="hash()"
+            type="Function" />
+        <info
+            description="Показує довідку по об'єкту."
+            keyword="help()"
+            type="Function" />
+        <info
+            description="Перетворює ціле число в рядкове представлення в шістнадцятковій системі."
+            keyword="hex()"
+            type="Function" />
+        <info
+            description="Повертає унікальний ідентифікатор об'єкта."
+            keyword="id()"
+            type="Function" />
+        <info
+            description="Читає рядок з стандартного вводу."
+            keyword="input()"
+            type="Function" />
+        <info
+            description="Перетворює значення на ціле число."
+            keyword="int()"
+            type="Function" />
+        <info
+            description="Повертає true, якщо об'єкт є екземпляром вказаного класу."
+            keyword="isinstance()"
+            type="Function" />
+        <info
+            description="Повертає true, якщо клас є підкласом іншого класу."
+            keyword="issubclass()"
+            type="Function" />
+        <info
+            description="Повертає ітератор з об'єкта."
+            keyword="iter()"
+            type="Function" />
+        <info
+            description="Повертає довжину об'єкта."
+            keyword="len()"
+            type="Function" />
+        <info
+            description="Перетворює ітератор у список."
+            keyword="list()"
+            type="Function" />
+        <info
+            description="Повертає словник локальних змінних."
+            keyword="locals()"
+            type="Function" />
+        <info
+            description="Застосовує функцію до всіх елементів ітератора."
+            keyword="map()"
+            type="Function" />
+        <info
+            description="Повертає найбільший з елементів ітератора."
+            keyword="max()"
+            type="Function" />
+        <info
+            description="Повертає об'єкт перегляду пам'яті."
+            keyword="memoryview()"
+            type="Function" />
+        <info
+            description="Повертає найменший з елементів ітератора."
+            keyword="min()"
+            type="Function" />
+        <info
+            description="Повертає наступний елемент з ітератора."
+            keyword="next()"
+            type="Function" />
+        <info
+            description="Створює новий об'єкт базового класу в Python."
+            keyword="object()"
+            type="Function" />
+        <info
+            description="Перетворює ціле число в рядкове представлення в октальній системі."
+            keyword="oct()"
+            type="Function" />
+        <info
+            description="Відкриває файл і повертає об'єкт файлу."
+            keyword="open()"
+            type="Function" />
+        <info
+            description="Повертає Unicode-код символу."
+            keyword="ord()"
+            type="Function" />
+        <info
+            description="Повертає значення x, підняте до степеня y."
+            keyword="pow()"
+            type="Function" />
+        <info
+            description="Виводить значення на стандартний вихід."
+            keyword="print()"
+            type="Function" />
+        <info
+            description="Повертає властивість класу."
+            keyword="property()"
+            type="Function" />
+        <info
+            description="Повертає послідовність цілих чисел."
+            keyword="range()"
+            type="Function" />
+        <info
+            description="Повертає рядкове представлення об'єкта."
+            keyword="repr()"
+            type="Function" />
+        <info
+            description="Повертає ітератор, який проходить по послідовності у зворотному порядку."
+            keyword="reversed()"
+            type="Function" />
+        <info
+            description="Округлює число до найближчого цілого."
+            keyword="round()"
+            type="Function" />
+        <info
+            description="Створює новий набір."
+            keyword="set()"
+            type="Function" />
+        <info
+            description="Встановлює значення атрибута об'єкта."
+            keyword="setattr()"
+            type="Function" />
+        <info
+            description="Повертає об'єкт slice, який можна використовувати для нарізання списків."
+            keyword="slice()"
+            type="Function" />
+        <info
+            description="Повертає відсортований список елементів ітератора."
+            keyword="sorted()"
+            type="Function" />
+        <info
+            description="Перетворює значення в рядок."
+            keyword="str()"
+            type="Function" />
+        <info
+            description="Повертає суму елементів ітератора."
+            keyword="sum()"
+            type="Function" />
+        <info
+            description="Перетворює ітератор у кортеж."
+            keyword="tuple()"
+            type="Function" />
+        <info
+            description="Повертає тип об'єкта."
+            keyword="type()"
+            type="Function" />
+        <info
+            description="Повертає словник змінних модуля або інстанції класу."
+            keyword="vars()"
+            type="Function" />
+        <info
+            description="Об'єднує кілька ітераторів в один ітератор кортежів."
+            keyword="zip()"
+            type="Function" />
+        <info
+            description="Динамічно імплементує модуль."
+            keyword="__import__()"
+            type="Function" />
 
     </language>
 </languages>

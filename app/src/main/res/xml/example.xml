@@ -1,0 +1,1680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<examples>
+    <language name="BASH">
+        <example keyword="if">
+            <description>
+                Виконує умовний блок команд.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="else">
+            <description>
+                Виконує блок команд, якщо умова if не виконана.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                else
+                echo "Variable is not 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="elif">
+            <description>
+                Виконує додаткову умову в умовному блоці.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                elif [ $var -eq 2 ]; then
+                echo "Variable is 2"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="fi">
+            <description>
+                Завершує умовний блок if.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="for">
+            <description>
+                Починає цикл for.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="while">
+            <description>
+                Починає цикл while.
+            </description>
+            <usage>
+                while [ $var -le 5 ]; do
+                echo "Variable is $var"
+                var=$((var + 1))
+                done
+            </usage>
+        </example>
+
+        <example keyword="until">
+            <description>
+                Починає цикл until.
+            </description>
+            <usage>
+                until [ $var -gt 5 ]; do
+                echo "Variable is $var"
+                var=$((var + 1))
+                done
+            </usage>
+        </example>
+
+        <example keyword="do">
+            <description>
+                Починає тіло циклу.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="done">
+            <description>
+                Завершує тіло циклу.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="case">
+            <description>
+                Виконує блоки команд залежно від значення змінної.
+            </description>
+            <usage>
+                case $var in
+                1) echo "one";;
+                2) echo "two";;
+                esac
+            </usage>
+        </example>
+
+        <example keyword="esac">
+            <description>
+                Завершує блок case.
+            </description>
+            <usage>
+                case $var in
+                1) echo "one";;
+                2) echo "two";;
+                esac
+            </usage>
+        </example>
+
+        <example keyword="function">
+            <description>
+                Визначає функцію.
+            </description>
+            <usage>
+                function greet {
+                echo "Hello, $1"
+                }
+                greet "world"
+            </usage>
+        </example>
+
+        <example keyword="select">
+            <description>
+                Виводить меню і дозволяє користувачу вибрати один з варіантів.
+            </description>
+            <usage>
+                select option in "one" "two"; do
+                echo "You selected $option"
+                break
+                done
+            </usage>
+        </example>
+
+        <example keyword="continue">
+            <description>
+                Пропускає залишок циклу і переходить до наступної ітерації.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                if [ $i -eq 2 ]; then
+                continue
+                fi
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="break">
+            <description>
+                Виходить з циклу.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                if [ $i -eq 2 ]; then
+                break
+                fi
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="shift">
+            <description>
+                Зсуває позиційні параметри вліво.
+            </description>
+            <usage>
+                while [ $# -gt 0 ]; do
+                echo "Argument: $1"
+                shift
+                done
+            </usage>
+        </example>
+
+        <example keyword="exit">
+            <description>
+                Завершує виконання скрипта.
+            </description>
+            <usage>
+                echo "Exiting..."
+                exit 0
+            </usage>
+        </example>
+
+        <example keyword="return">
+            <description>
+                Повертає значення з функції.
+            </description>
+            <usage>
+                function sum {
+                return $(( $1 + $2 ))
+                }
+                sum 5 10
+            </usage>
+        </example>
+
+        <example keyword="unset">
+            <description>
+                Видаляє змінну або функцію.
+            </description>
+            <usage>
+                unset MY_VAR
+            </usage>
+        </example>
+
+        <example keyword="trap">
+            <description>
+                Визначає команду, яка буде виконана при отриманні певного сигналу.
+            </description>
+            <usage>
+                trap "echo Caught SIGINT" SIGINT
+                while true; do
+                sleep 1
+                done
+            </usage>
+        </example>
+
+        <example keyword="eval">
+            <description>
+                Виконує команду, передану у вигляді рядка.
+            </description>
+            <usage>
+                eval "echo Hello, World!"
+            </usage>
+        </example>
+
+        <example keyword="exec">
+            <description>
+                Замінює поточний процес виконанням нової команди.
+            </description>
+            <usage>
+                exec ls
+            </usage>
+        </example>
+
+        <example keyword="readonly">
+            <description>
+                Оголошує змінну як доступну тільки для читання.
+            </description>
+            <usage>
+                readonly MY_VAR=1
+            </usage>
+        </example>
+
+        <example keyword="local">
+            <description>
+                Оголошує змінну локальною для функції.
+            </description>
+            <usage>
+                function my_function {
+                local MY_VAR=1
+                echo $MY_VAR
+                }
+                my_function
+            </usage>
+        </example>
+
+        <example keyword="let">
+            <description>
+                Виконує арифметичну операцію.
+            </description>
+            <usage>
+                let RESULT=1+2
+                echo $RESULT
+            </usage>
+        </example>
+
+        <example keyword="test">
+            <description>
+                Перевіряє умови.
+            </description>
+            <usage>
+                if test $var -eq 1; then
+                echo "Variable is 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="true">
+            <description>
+                Повертає успішний статус виконання.
+            </description>
+            <usage>
+                while true; do
+                echo "Infinite loop"
+                done
+            </usage>
+        </example>
+
+        <example keyword="false">
+            <description>
+                Повертає неуспішний статус виконання.
+            </description>
+            <usage>
+                false || echo "Command failed"
+            </usage>
+        </example>
+
+        <example keyword="export">
+            <description>
+                Експортує змінну в середовище дочірніх процесів.
+            </description>
+            <usage>
+                export MY_VAR="value"
+            </usage>
+        </example>
+
+        <example keyword="alias">
+            <description>
+                Створює псевдонім для команди.
+            </description>
+            <usage>
+                alias ll="ls -l"
+            </usage>
+        </example>
+
+        <example keyword="unalias">
+            <description>
+                Видаляє псевдонім для команди.
+            </description>
+            <usage>
+                unalias ll
+            </usage>
+        </example>
+
+        <example keyword="source">
+            <description>
+                Виконує командний файл у поточному середовищі оболонки.
+            </description>
+            <usage>
+                source ~/.bashrc
+            </usage>
+        </example>
+
+        <example keyword="command">
+            <description>
+                Виконує команду, ігноруючи псевдоніми.
+            </description>
+            <usage>
+                command ls
+            </usage>
+        </example>
+
+        <example keyword="declare">
+            <description>
+                Оголошує змінну з певним атрибутом.
+            </description>
+            <usage>
+                declare -r MY_VAR=1 # оголосити змінну як доступну тільки для читання
+            </usage>
+        </example>
+
+        <example keyword="typeset">
+            <description>
+                Синонім для declare.
+            </description>
+            <usage>
+                typeset -i MY_INT=42 # оголосити змінну як integer
+            </usage>
+        </example>
+
+        <example keyword="getopts">
+            <description>
+                Аналізує позиційні параметри для вказаних опцій.
+            </description>
+            <usage>
+                while getopts ":abc:" opt; do
+                case $opt in
+                a) echo "Option A selected";;
+                b) echo "Option B selected";;
+                c) echo "Option C selected with argument $OPTARG";;
+                ?) echo "Invalid option";;
+                esac
+                done
+            </usage>
+        </example>
+
+        <example keyword="printf">
+            <description>
+                Форматований вивід тексту.
+            </description>
+            <usage>
+                printf "Name: %s\nAge: %d\n" "Alice" 30
+            </usage>
+        </example>
+    </language>
+    <language name="SHELL">
+        <example keyword="if">
+            <description>
+                Виконує умовний блок команд.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="else">
+            <description>
+                Виконує блок команд, якщо умова if не виконана.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                else
+                echo "Variable is not 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="elif">
+            <description>
+                Виконує додаткову умову в умовному блоці.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                elif [ $var -eq 2 ]; then
+                echo "Variable is 2"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="fi">
+            <description>
+                Завершує умовний блок if.
+            </description>
+            <usage>
+                if [ $var -eq 1 ]; then
+                echo "Variable is 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="for">
+            <description>
+                Починає цикл for.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="while">
+            <description>
+                Починає цикл while.
+            </description>
+            <usage>
+                while [ $var -le 5 ]; do
+                echo "Variable is $var"
+                var=$((var + 1))
+                done
+            </usage>
+        </example>
+
+        <example keyword="until">
+            <description>
+                Починає цикл until.
+            </description>
+            <usage>
+                until [ $var -gt 5 ]; do
+                echo "Variable is $var"
+                var=$((var + 1))
+                done
+            </usage>
+        </example>
+
+        <example keyword="do">
+            <description>
+                Починає тіло циклу.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="done">
+            <description>
+                Завершує тіло циклу.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="case">
+            <description>
+                Виконує блоки команд залежно від значення змінної.
+            </description>
+            <usage>
+                case $var in
+                1) echo "one";;
+                2) echo "two";;
+                esac
+            </usage>
+        </example>
+
+        <example keyword="esac">
+            <description>
+                Завершує блок case.
+            </description>
+            <usage>
+                case $var in
+                1) echo "one";;
+                2) echo "two";;
+                esac
+            </usage>
+        </example>
+
+        <example keyword="function">
+            <description>
+                Визначає функцію.
+            </description>
+            <usage>
+                function greet {
+                echo "Hello, $1"
+                }
+                greet "world"
+            </usage>
+        </example>
+
+        <example keyword="select">
+            <description>
+                Виводить меню і дозволяє користувачу вибрати один з варіантів.
+            </description>
+            <usage>
+                select option in "one" "two"; do
+                echo "You selected $option"
+                break
+                done
+            </usage>
+        </example>
+
+        <example keyword="continue">
+            <description>
+                Пропускає залишок циклу і переходить до наступної ітерації.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                if [ $i -eq 2 ]; then
+                continue
+                fi
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="break">
+            <description>
+                Виходить з циклу.
+            </description>
+            <usage>
+                for i in 1 2 3; do
+                if [ $i -eq 2 ]; then
+                break
+                fi
+                echo "Iteration $i"
+                done
+            </usage>
+        </example>
+
+        <example keyword="shift">
+            <description>
+                Зсуває позиційні параметри вліво.
+            </description>
+            <usage>
+                while [ $# -gt 0 ]; do
+                echo "Argument: $1"
+                shift
+                done
+            </usage>
+        </example>
+
+        <example keyword="exit">
+            <description>
+                Завершує виконання скрипта.
+            </description>
+            <usage>
+                echo "Exiting..."
+                exit 0
+            </usage>
+        </example>
+
+        <example keyword="return">
+            <description>
+                Повертає значення з функції.
+            </description>
+            <usage>
+                function sum {
+                return $(( $1 + $2 ))
+                }
+                sum 5 10
+            </usage>
+        </example>
+
+        <example keyword="unset">
+            <description>
+                Видаляє змінну або функцію.
+            </description>
+            <usage>
+                unset MY_VAR
+            </usage>
+        </example>
+
+        <example keyword="trap">
+            <description>
+                Визначає команду, яка буде виконана при отриманні певного сигналу.
+            </description>
+            <usage>
+                trap "echo Caught SIGINT" SIGINT
+                while true; do
+                sleep 1
+                done
+            </usage>
+        </example>
+
+        <example keyword="eval">
+            <description>
+                Виконує команду, передану у вигляді рядка.
+            </description>
+            <usage>
+                eval "echo Hello, World!"
+            </usage>
+        </example>
+
+        <example keyword="exec">
+            <description>
+                Замінює поточний процес виконанням нової команди.
+            </description>
+            <usage>
+                exec ls
+            </usage>
+        </example>
+
+        <example keyword="readonly">
+            <description>
+                Оголошує змінну як доступну тільки для читання.
+            </description>
+            <usage>
+                readonly MY_VAR=1
+            </usage>
+        </example>
+
+        <example keyword="local">
+            <description>
+                Оголошує змінну локальною для функції.
+            </description>
+            <usage>
+                function my_function {
+                local MY_VAR=1
+                echo $MY_VAR
+                }
+                my_function
+            </usage>
+        </example>
+
+        <example keyword="let">
+            <description>
+                Виконує арифметичну операцію.
+            </description>
+            <usage>
+                let RESULT=1+2
+                echo $RESULT
+            </usage>
+        </example>
+
+        <example keyword="test">
+            <description>
+                Перевіряє умови.
+            </description>
+            <usage>
+                if test $var -eq 1; then
+                echo "Variable is 1"
+                fi
+            </usage>
+        </example>
+
+        <example keyword="true">
+            <description>
+                Повертає успішний статус виконання.
+            </description>
+            <usage>
+                while true; do
+                echo "Infinite loop"
+                done
+            </usage>
+        </example>
+
+        <example keyword="false">
+            <description>
+                Повертає неуспішний статус виконання.
+            </description>
+            <usage>
+                false || echo "Command failed"
+            </usage>
+        </example>
+
+        <example keyword="export">
+            <description>
+                Експортує змінну в середовище дочірніх процесів.
+            </description>
+            <usage>
+                export MY_VAR="value"
+            </usage>
+        </example>
+
+        <example keyword="alias">
+            <description>
+                Створює псевдонім для команди.
+            </description>
+            <usage>
+                alias ll="ls -l"
+            </usage>
+        </example>
+
+        <example keyword="unalias">
+            <description>
+                Видаляє псевдонім для команди.
+            </description>
+            <usage>
+                unalias ll
+            </usage>
+        </example>
+
+        <example keyword="source">
+            <description>
+                Виконує командний файл у поточному середовищі оболонки.
+            </description>
+            <usage>
+                source ~/.bashrc
+            </usage>
+        </example>
+
+        <example keyword="command">
+            <description>
+                Виконує команду, ігноруючи псевдоніми.
+            </description>
+            <usage>
+                command ls
+            </usage>
+        </example>
+
+        <example keyword="declare">
+            <description>
+                Оголошує змінну з певним атрибутом.
+            </description>
+            <usage>
+                declare -i num=5 # Оголошує змінну як ціле число
+            </usage>
+        </example>
+
+        <example keyword="type">
+            <description>
+                Визначає тип команди або функції.
+            </description>
+            <usage>
+                type ls
+            </usage>
+        </example>
+
+        <example keyword="nohup">
+            <description>
+                Запускає команду, яка не буде зупинена при виході з оболонки.
+            </description>
+            <usage>
+                nohup long_running_command &amp;
+            </usage>
+        </example>
+
+        <example keyword="jobs">
+            <description>
+                Показує список фонових завдань.
+            </description>
+            <usage>
+                jobs
+            </usage>
+        </example>
+
+        <example keyword="fg">
+            <description>
+                Переносить фонове завдання в передній план.
+            </description>
+            <usage>
+                fg %1
+            </usage>
+        </example>
+
+        <example keyword="bg">
+            <description>
+                Переносить завдання з переднього плану в фон.
+            </description>
+            <usage>
+                bg %1
+            </usage>
+        </example>
+
+        <example keyword="pwd">
+            <description>
+                Показує поточний робочий каталог.
+            </description>
+            <usage>
+                pwd
+            </usage>
+        </example>
+
+        <example keyword="cd">
+            <description>
+                Змінює поточний робочий каталог.
+            </description>
+            <usage>
+                cd /path/to/directory
+            </usage>
+        </example>
+
+        <example keyword="mkdir">
+            <description>
+                Створює новий каталог.
+            </description>
+            <usage>
+                mkdir new_directory
+            </usage>
+        </example>
+
+        <example keyword="rmdir">
+            <description>
+                Видаляє порожній каталог.
+            </description>
+            <usage>
+                rmdir empty_directory
+            </usage>
+        </example>
+
+        <example keyword="rm">
+            <description>
+                Видаляє файли або каталоги.
+            </description>
+            <usage>
+                rm file.txt
+                rm -r directory # Видаляє каталог і його вміст
+            </usage>
+        </example>
+
+        <example keyword="cp">
+            <description>
+                Копіює файли або каталоги.
+            </description>
+            <usage>
+                cp source.txt destination.txt
+                cp -r source_directory destination_directory # Копіює каталог
+            </usage>
+        </example>
+
+        <example keyword="mv">
+            <description>
+                Переміщує або перейменовує файли або каталоги.
+            </description>
+            <usage>
+                mv old_name.txt new_name.txt
+                mv file.txt /path/to/destination/
+            </usage>
+        </example>
+
+        <example keyword="chmod">
+            <description>
+                Змінює дозволи на файли або каталоги.
+            </description>
+            <usage>
+                chmod 755 script.sh
+            </usage>
+        </example>
+
+        <example keyword="chown">
+            <description>
+                Змінює власника і групу файлів або каталогів.
+            </description>
+            <usage>
+                chown user:group file.txt
+            </usage>
+        </example>
+
+        <example keyword="ln">
+            <description>
+                Створює символічні або жорсткі посилання на файли.
+            </description>
+            <usage>
+                ln -s /path/to/original /path/to/link # Символічне посилання
+            </usage>
+        </example>
+    </language>
+    <language name="Python">
+        <example keyword="False">
+            <description>Логічне значення, що представляє хибність.</description>
+            <usage><![CDATA[
+a = False
+if not a:
+    print("a is False")
+        ]]></usage>
+        </example>
+        <example keyword="None">
+            <description>Представляє відсутність значення. Використовується для ініціалізації
+                змінних і як значення за замовчуванням.
+            </description>
+            <usage><![CDATA[
+def func(value=None):
+    if value is None:
+        print("No value provided")
+    else:
+        print("Value:", value)
+
+func()
+func(10)
+        ]]></usage>
+        </example>
+        <example keyword="True">
+            <description>Логічне значення, що представляє істинність.</description>
+            <usage><![CDATA[
+a = True
+if a:
+    print("a is True")
+        ]]></usage>
+        </example>
+        <example keyword="and">
+            <description>Логічний оператор, який повертає True, якщо обидва операнди є True.
+            </description>
+            <usage><![CDATA[
+a = True
+b = False
+print(a and b)  # Output: False
+print(a and True)  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="as">
+            <description>Використовується для створення псевдонімів при імпорті і для управління
+                контекстами.
+            </description>
+            <usage><![CDATA[
+import math as m
+print(m.sqrt(16))
+
+with open('file.txt', 'w') as f:
+    f.write("Hello")
+        ]]></usage>
+        </example>
+        <example keyword="assert">
+            <description>Використовується для перевірки виразів і викидання виключень, якщо вираз є
+                False.
+            </description>
+            <usage><![CDATA[
+x = 10
+assert x > 5, "x should be greater than 5"
+        ]]></usage>
+        </example>
+        <example keyword="break">
+            <description>Перериває виконання найближчого циклу.</description>
+            <usage><![CDATA[
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+        ]]></usage>
+        </example>
+        <example keyword="class">
+            <description>Визначає новий клас.</description>
+            <usage><![CDATA[
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+
+    def show(self):
+        print(self.value)
+
+obj = MyClass(10)
+obj.show()
+        ]]></usage>
+        </example>
+        <example keyword="continue">
+            <description>Пропускає залишок коду в циклі і переходить до наступної ітерації.
+            </description>
+            <usage><![CDATA[
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(i)  # Output: 1, 3, 5, 7, 9
+        ]]></usage>
+        </example>
+        <example keyword="def">
+            <description>Визначає нову функцію або метод.</description>
+            <usage><![CDATA[
+def greet(name):
+    print(f"Hello, {name}")
+
+greet("Alice")
+        ]]></usage>
+        </example>
+        <example keyword="del">
+            <description>Видаляє об'єкт.</description>
+            <usage><![CDATA[
+x = 10
+del x
+# print(x)  # This will raise a NameError
+        ]]></usage>
+        </example>
+        <example keyword="elif">
+            <description>Використовується у умовних конструкціях для перевірки додаткових умов.
+            </description>
+            <usage><![CDATA[
+x = 10
+if x > 15:
+    print("x is greater than 15")
+elif x > 5:
+    print("x is greater than 5 but less than or equal to 15")
+else:
+    print("x is 5 or less")
+        ]]></usage>
+        </example>
+        <example keyword="else">
+            <description>Використовується у умовних конструкціях для обробки випадку, коли жодна
+                умова не є істинною.
+            </description>
+            <usage><![CDATA[
+x = 3
+if x > 5:
+    print("x is greater than 5")
+else:
+    print("x is 5 or less")
+        ]]></usage>
+        </example>
+        <example keyword="except">
+            <description>Обробляє виключення, які виникають під час виконання коду.</description>
+            <usage><![CDATA[
+try:
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+        ]]></usage>
+        </example>
+        <example keyword="finally">
+            <description>Визначає блок коду, який буде виконано після блоку try-except, незалежно
+                від того, чи виникла помилка.
+            </description>
+            <usage><![CDATA[
+try:
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Handling error")
+finally:
+    print("This will always execute")
+        ]]></usage>
+        </example>
+        <example keyword="for">
+            <description>Розпочинає цикл, який ітерує через послідовність.</description>
+            <usage><![CDATA[
+for i in range(5):
+    print(i)  # Output: 0, 1, 2, 3, 4
+        ]]></usage>
+        </example>
+        <example keyword="from">
+            <description>Використовується при імпорті для визначення, з якого модуля імплементуються
+                компоненти.
+            </description>
+            <usage><![CDATA[
+from math import sqrt
+print(sqrt(16))
+        ]]></usage>
+        </example>
+        <example keyword="global">
+            <description>Оголошує змінну глобальною, щоб використовувати її поза локальним простором
+                імен.
+            </description>
+            <usage><![CDATA[
+x = 10
+
+def modify():
+    global x
+    x = 20
+
+modify()
+print(x)  # Output: 20
+        ]]></usage>
+        </example>
+        <example keyword="if">
+            <description>Розпочинає умовну конструкцію.</description>
+            <usage><![CDATA[
+x = 10
+if x > 5:
+    print("x is greater than 5")
+        ]]></usage>
+        </example>
+        <example keyword="import">
+            <description>Імплементує модулі та їх компоненти в поточний простір імен.</description>
+            <usage><![CDATA[
+import math
+print(math.sqrt(16))
+        ]]></usage>
+        </example>
+        <example keyword="in">
+            <description>Перевіряє, чи є значення в послідовності чи ітераторі.</description>
+            <usage><![CDATA[
+x = 3
+print(x in [1, 2, 3])  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="is">
+            <description>Порівнює ідентичність двох об'єктів.</description>
+            <usage><![CDATA[
+a = [1, 2, 3]
+b = a
+print(a is b)  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="lambda">
+            <description>Визначає анонімну функцію на один рядок.</description>
+            <usage><![CDATA[
+f = lambda x: x * 2
+print(f(5))  # Output: 10
+        ]]></usage>
+        </example>
+        <example keyword="nonlocal">
+            <description>Оголошує змінну не локальною, щоб посилатися на змінну в зовнішньому
+                контексті.
+            </description>
+            <usage><![CDATA[
+def outer():
+    x = 10
+    def inner():
+        nonlocal x
+        x = 20
+    inner()
+    print(x)
+
+outer()  # Output: 20
+        ]]></usage>
+        </example>
+        <example keyword="not">
+            <description>Логічний оператор, який повертає протилежне значення булевому виразу.
+            </description>
+            <usage><![CDATA[
+x = True
+print(not x)  # Output: False
+        ]]></usage>
+        </example>
+        <example keyword="or">
+            <description>Логічний оператор, який повертає True, якщо хоча б один з операндів є
+                True.
+            </description>
+            <usage><![CDATA[
+a = True
+b = False
+print(a or b)  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="pass">
+            <description>Місце для коду, яке нічого не виконує. Використовується для визначення
+                порожніх функцій і класів.
+            </description>
+            <usage><![CDATA[
+def function():
+    pass
+
+class MyClass:
+    pass
+        ]]></usage>
+        </example>
+        <example keyword="raise">
+            <description>Викидає виключення.</description>
+            <usage><![CDATA[
+def check_value(x):
+    if x < 0:
+        raise ValueError("x should be non-negative")
+
+check_value(-1)  # This will raise ValueError
+        ]]></usage>
+        </example>
+        <example keyword="return">
+            <description>Повертає значення з функції чи методу.</description>
+            <usage><![CDATA[
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(result)  # Output: 8
+        ]]></usage>
+        </example>
+        <example keyword="try">
+            <description>Розпочинає блок коду, який може викликати виключення.</description>
+            <usage><![CDATA[
+try:
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+        ]]></usage>
+        </example>
+        <example keyword="while">
+            <description>Розпочинає цикл, який виконується поки умова є істинною.</description>
+            <usage><![CDATA[
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+        ]]></usage>
+        </example>
+        <example keyword="with">
+            <description>Визначає контекст для автоматичного управління ресурсами.</description>
+            <usage><![CDATA[
+with open('file.txt', 'w') as f:
+    f.write("Hello")
+        ]]></usage>
+        </example>
+        <example keyword="yield">
+            <description>Повертає значення з генератора без завершення функції.</description>
+            <usage><![CDATA[
+def countdown(n):
+    while n > 0:
+        yield n
+        n -= 1
+
+for number in countdown(5):
+    print(number)
+        ]]></usage>
+        </example>
+        <example keyword="abs()">
+            <description>Повертає абсолютне значення числа.</description>
+            <usage><![CDATA[
+print(abs(-10))  # Output: 10
+        ]]></usage>
+        </example>
+        <example keyword="all()">
+            <description>Повертає True, якщо всі елементи ітератора є істинними.</description>
+            <usage><![CDATA[
+print(all([True, True, False]))  # Output: False
+print(all([1, 2, 3]))  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="any()">
+            <description>Повертає True, якщо хоча б один з елементів ітератора є істинним.
+            </description>
+            <usage><![CDATA[
+print(any([False, False, True]))  # Output: True
+print(any([0, 0, 0]))  # Output: False
+        ]]></usage>
+        </example>
+        <example keyword="ascii()">
+            <description>Повертає рядкове представлення об'єкта з ASCII-символами.</description>
+            <usage><![CDATA[
+print(ascii("Hello, world!"))  # Output: 'Hello, world!'
+        ]]></usage>
+        </example>
+        <example keyword="bin()">
+            <description>Перетворює ціле число в рядкове представлення у двійковій системі.
+            </description>
+            <usage><![CDATA[
+print(bin(10))  # Output: 0b1010
+        ]]></usage>
+        </example>
+        <example keyword="bool()">
+            <description>Перетворює значення в його булевий еквівалент.</description>
+            <usage><![CDATA[
+print(bool(0))  # Output: False
+print(bool(1))  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="bytearray()">
+            <description>Повертає новий об'єкт bytearray, який є змінним.</description>
+            <usage><![CDATA[
+b = bytearray([65, 66, 67])
+print(b)  # Output: bytearray(b'ABC')
+b[0] = 90
+print(b)  # Output: bytearray(b'ZBC')
+        ]]></usage>
+        </example>
+        <example keyword="bytes()">
+            <description>Перетворює об'єкт на незмінну послідовність байтів.</description>
+            <usage><![CDATA[
+b = bytes([65, 66, 67])
+print(b)  # Output: b'ABC'
+        ]]></usage>
+        </example>
+        <example keyword="callable()">
+            <description>Повертає True, якщо об'єкт можна викликати як функцію.</description>
+            <usage><![CDATA[
+print(callable(print))  # Output: True
+print(callable(10))  # Output: False
+        ]]></usage>
+        </example>
+        <example keyword="chr()">
+            <description>Перетворює ціле число в відповідний символ.</description>
+            <usage><![CDATA[
+print(chr(65))  # Output: 'A'
+        ]]></usage>
+        </example>
+        <example keyword="classmethod()">
+            <description>Перетворює метод у метод класу.</description>
+            <usage><![CDATA[
+class MyClass:
+    @classmethod
+    def greet(cls):
+        print("Hello from MyClass")
+
+MyClass.greet()
+        ]]></usage>
+        </example>
+        <example keyword="compile()">
+            <description>Компілює вихідний код у об'єкт коду, який можна виконати.</description>
+            <usage><![CDATA[
+code = compile('print("Hello, World!")', '', 'exec')
+exec(code)
+        ]]></usage>
+        </example>
+        <example keyword="complex()">
+            <description>Створює комплексне число.</description>
+            <usage><![CDATA[
+c = complex(2, 3)
+print(c)  # Output: (2+3j)
+        ]]></usage>
+        </example>
+        <example keyword="delattr()">
+            <description>Видаляє атрибут з об'єкта.</description>
+            <usage><![CDATA[
+class MyClass:
+    def __init__(self):
+        self.value = 10
+
+obj = MyClass()
+delattr(obj, 'value')
+print(hasattr(obj, 'value'))  # Output: False
+        ]]></usage>
+        </example>
+        <example keyword="dict()">
+            <description>Створює новий словник.</description>
+            <usage><![CDATA[
+d = dict(name="Alice", age=30)
+print(d)  # Output: {'name': 'Alice', 'age': 30}
+        ]]></usage>
+        </example>
+        <example keyword="dir()">
+            <description>Повертає список імен у локальному просторі імен.</description>
+            <usage><![CDATA[
+print(dir())  # Output: ['__builtins__', '__doc__', '__import__', ...]
+        ]]></usage>
+        </example>
+        <example keyword="divmod()">
+            <description>Повертає кортеж з частки і залишку від ділення.</description>
+            <usage><![CDATA[
+print(divmod(9, 4))  # Output: (2, 1)
+        ]]></usage>
+        </example>
+        <example keyword="enumerate()">
+            <description>Повертає об'єкт перерахування.</description>
+            <usage><![CDATA[
+for index, value in enumerate(['a', 'b', 'c']):
+    print(index, value)
+# Output: 0 a
+#         1 b
+#         2 c
+        ]]></usage>
+        </example>
+        <example keyword="eval()">
+            <description>Оцінює вираз у рядку.</description>
+            <usage><![CDATA[
+x = 10
+print(eval('x + 5'))  # Output: 15
+        ]]></usage>
+        </example>
+        <example keyword="exec()">
+            <description>Виконує код у рядку.</description>
+            <usage><![CDATA[
+code = 'for i in range(3): print(i)'
+exec(code)
+        ]]></usage>
+        </example>
+        <example keyword="exit()">
+            <description>Виходить з інтерпретатора.</description>
+            <usage><![CDATA[
+import sys
+sys.exit("Exiting")
+        ]]></usage>
+        </example>
+        <example keyword="filter()">
+            <description>Фільтрує елементи ітератора за допомогою функції.</description>
+            <usage><![CDATA[
+def is_even(n):
+    return n % 2 == 0
+
+print(list(filter(is_even, [1, 2, 3, 4])))  # Output: [2, 4]
+        ]]></usage>
+        </example>
+        <example keyword="float()">
+            <description>Перетворює значення на число з плаваючою комою.</description>
+            <usage><![CDATA[
+print(float(5))  # Output: 5.0
+        ]]></usage>
+        </example>
+        <example keyword="format()">
+            <description>Форматує значення у рядок.</description>
+            <usage><![CDATA[
+name = "Alice"
+print("Hello, {}".format(name))  # Output: Hello, Alice
+        ]]></usage>
+        </example>
+        <example keyword="frozenset()">
+            <description>Створює незмінний набір.</description>
+            <usage><![CDATA[
+fs = frozenset([1, 2, 3, 3])
+print(fs)  # Output: frozenset({1, 2, 3})
+        ]]></usage>
+        </example>
+        <example keyword="getattr()">
+            <description>Отримує атрибут з об'єкта.</description>
+            <usage><![CDATA[
+class MyClass:
+    def __init__(self):
+        self.value = 10
+
+obj = MyClass()
+print(getattr(obj, 'value'))  # Output: 10
+        ]]></usage>
+        </example>
+        <example keyword="hasattr()">
+            <description>Перевіряє, чи має об'єкт певний атрибут.</description>
+            <usage><![CDATA[
+class MyClass:
+    def __init__(self):
+        self.value = 10
+
+obj = MyClass()
+print(hasattr(obj, 'value'))  # Output: True
+print(hasattr(obj, 'nonexistent'))  # Output: False
+        ]]></usage>
+        </example>
+        <example keyword="hex()">
+            <description>Перетворює число в шістнадцятковий рядок.</description>
+            <usage><![CDATA[
+print(hex(255))  # Output: 0xff
+        ]]></usage>
+        </example>
+        <example keyword="id()">
+            <description>Повертає унікальний ідентифікатор об'єкта.</description>
+            <usage><![CDATA[
+a = [1, 2, 3]
+print(id(a))
+        ]]></usage>
+        </example>
+        <example keyword="input()">
+            <description>Зчитує рядок з введення користувача.</description>
+            <usage><![CDATA[
+name = input("Enter your name: ")
+print("Hello,", name)
+        ]]></usage>
+        </example>
+        <example keyword="int()">
+            <description>Перетворює значення на ціле число.</description>
+            <usage><![CDATA[
+print(int("10"))  # Output: 10
+        ]]></usage>
+        </example>
+        <example keyword="isinstance()">
+            <description>Перевіряє, чи є об'єкт екземпляром певного класу.</description>
+            <usage><![CDATA[
+x = 10
+print(isinstance(x, int))  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="issubclass()">
+            <description>Перевіряє, чи є клас підкласом іншого класу.</description>
+            <usage><![CDATA[
+class A:
+    pass
+
+class B(A):
+    pass
+
+print(issubclass(B, A))  # Output: True
+        ]]></usage>
+        </example>
+        <example keyword="iter()">
+            <description>Повертає ітератор з об'єкта.</description>
+            <usage><![CDATA[
+numbers = [1, 2, 3]
+it = iter(numbers)
+print(next(it))  # Output: 1
+        ]]></usage>
+        </example>
+        <example keyword="len()">
+            <description>Повертає довжину об'єкта.</description>
+            <usage><![CDATA[
+print(len("Hello"))  # Output: 5
+print(len([1, 2, 3]))  # Output: 3
+        ]]></usage>
+        </example>
+        <example keyword="list()">
+            <description>Перетворює ітератор або послідовність на список.</description>
+            <usage><![CDATA[
+print(list("abc"))  # Output: ['a', 'b', 'c']
+        ]]></usage>
+        </example>
+        <example keyword="map()">
+            <description>Застосовує функцію до кожного елемента ітератора.</description>
+            <usage><![CDATA[
+def square(n):
+    return n * n
+
+print(list(map(square, [1, 2, 3])))  # Output: [1, 4, 9]
+        ]]></usage>
+        </example>
+        <example keyword="max()">
+            <description>Повертає найбільший елемент з ітератора або з набору значень.</description>
+            <usage><![CDATA[
+print(max([1, 2, 3]))  # Output: 3
+        ]]></usage>
+        </example>
+        <example keyword="memoryview()">
+            <description>Повертає об'єкт перегляду пам'яті.</description>
+            <usage><![CDATA[
+data = bytearray(b"hello")
+mv = memoryview(data)
+print(mv[0])  # Output: 104
+        ]]></usage>
+        </example>
+        <example keyword="min()">
+            <description>Повертає найменший елемент з ітератора або з набору значень.</description>
+            <usage><![CDATA[
+print(min([1, 2, 3]))  # Output: 1
+        ]]></usage>
+        </example>
+        <example keyword="next()">
+            <description>Повертає наступний елемент з ітератора.</description>
+            <usage><![CDATA[
+numbers = iter([1, 2, 3])
+print(next(numbers))  # Output: 1
+        ]]></usage>
+        </example>
+        <example keyword="object()">
+            <description>Створює новий базовий об'єкт.</description>
+            <usage><![CDATA[
+obj = object()
+print(obj)
+        ]]></usage>
+        </example>
+        <example keyword="oct()">
+            <description>Перетворює число в рядок у восьмиричній системі.</description>
+            <usage><![CDATA[
+print(oct(8))  # Output: 0o10
+        ]]></usage>
+        </example>
+        <example keyword="open()">
+            <description>Відкриває файл і повертає об'єкт файлу.</description>
+            <usage><![CDATA[
+with open('file.txt', 'w') as f:
+    f.write("Hello")
+        ]]></usage>
+        </example>
+        <example keyword="ord()">
+            <description>Повертає числовий код символу.</description>
+            <usage><![CDATA[
+print(ord('A'))  # Output: 65
+        ]]></usage>
+        </example>
+        <example keyword="pow()">
+            <description>Повертає значення x в степені y.</description>
+            <usage><![CDATA[
+print(pow(2, 3))  # Output: 8
+        ]]></usage>
+        </example>
+        <example keyword="print()">
+            <description>Виводить значення на екран.</description>
+            <usage><![CDATA[
+print("Hello, World!")
+        ]]></usage>
+        </example>
+        <example keyword="range()">
+            <description>Повертає послідовність чисел.</description>
+            <usage><![CDATA[
+for i in range(3):
+    print(i)  # Output: 0, 1, 2
+        ]]></usage>
+        </example>
+        <example keyword="repr()">
+            <description>Повертає рядкове представлення об'єкта для відладки.</description>
+            <usage><![CDATA[
+print(repr("Hello"))  # Output: 'Hello'
+        ]]></usage>
+        </example>
+        <example keyword="reversed()">
+            <description>Повертає ітератор, який перебирає елементи в зворотному порядку.
+            </description>
+            <usage><![CDATA[
+print(list(reversed([1, 2, 3])))  # Output: [3, 2, 1]
+        ]]></usage>
+        </example>
+        <example keyword="round()">
+            <description>Округлює число до найближчого цілого або до вказаного числа десяткових
+                знаків.
+            </description>
+            <usage><![CDATA[
+print(round(3.14159, 2))  # Output: 3.14
+        ]]></usage>
+        </example>
+        <example keyword="set()">
+            <description>Створює новий набір.</description>
+            <usage><![CDATA[
+print(set([1, 2, 2, 3]))  # Output: {1, 2, 3}
+        ]]></usage>
+        </example>
+        <example keyword="slice()">
+            <description>Повертає об'єкт слайсу для індексування.</description>
+            <usage><![CDATA[
+data = [1, 2, 3, 4, 5]
+s = slice(1, 4)
+print(data[s])  # Output: [2, 3, 4]
+        ]]></usage>
+        </example>
+        <example keyword="sorted()">
+            <description>Сортує елементи ітератора і повертає новий список.</description>
+            <usage><![CDATA[
+print(sorted([3, 1, 2]))  # Output: [1, 2, 3]
+        ]]></usage>
+        </example>
+        <example keyword="str()">
+            <description>Перетворює значення на рядок.</description>
+            <usage><![CDATA[
+print(str(123))  # Output: '123'
+        ]]></usage>
+        </example>
+        <example keyword="sum()">
+            <description>Повертає суму елементів ітератора.</description>
+            <usage><![CDATA[
+print(sum([1, 2, 3]))  # Output: 6
+        ]]></usage>
+        </example>
+        <example keyword="tuple()">
+            <description>Перетворює ітератор або послідовність на кортеж.</description>
+            <usage><![CDATA[
+print(tuple([1, 2, 3]))  # Output: (1, 2, 3)
+        ]]></usage>
+        </example>
+        <example keyword="type()">
+            <description>Повертає тип об'єкта.</description>
+            <usage><![CDATA[
+print(type(123))  # Output: <class 'int'>
+        ]]></usage>
+        </example>
+        <example keyword="zip()">
+            <description>Об'єднує кілька ітераторів в один ітератор пар.</description>
+            <usage><![CDATA[
+print(list(zip([1, 2, 3], ['a', 'b', 'c'])))
+# Output: [(1, 'a'), (2, 'b'), (3, 'c')]
+        ]]></usage>
+        </example>
+    </language>
+</examples>
+
